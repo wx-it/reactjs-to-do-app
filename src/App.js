@@ -1,5 +1,29 @@
 
 function App() {
+
+  function addTasks(){
+    return(
+      <div className="add-task">
+        <form action="">
+
+          <div>
+          <h3>Task Name</h3>
+          <input type="text" placeholder="task" />
+          </div>
+
+          <div>
+          <h3>Status</h3>
+            <select name="" id="">
+              <option default>All</option>
+              <option value="">Incomplete</option>
+              <option value="">Complete</option>
+            </select>
+          </div>
+        </form>
+      </div>
+    )
+  }
+
   return (
     <div className="container">
       <header>
