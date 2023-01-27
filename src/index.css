@@ -108,14 +108,7 @@ input[type="checkbox"] {
 /*..........popup...........*/
 
 .add-task{
-  position: absolute;
   width: 450px;
-  height: fit-content;
-  left: 0; 
-  right: 0; 
-  top: 0; 
-  bottom: 0; 
-  margin: auto;
   border-radius: 10px;
   padding: 0.5rem 1rem;
   background-color: rgb(237, 246, 253);

@@ -1,49 +1,20 @@
 import { useState } from "react";
-import { nanoid } from "nanoid";
-import {
-  animated,
-  useSpring,
-  config,
-  useSpringRef,
-  useChain
-} from "react-spring";
-import { MdDelete, MdCreate } from "react-icons/md";
+import { motion } from "framer-motion";
+import Modal from "./components/modal/Modal";
+import Tasks from "./components/tasks/Tasks";
 
 function App() {
 
-  const [popUp, setPopUp] = useState(false)
-  const [tasks, setTasks] = useState([{task:"eat", select:"All"}])
+  const [modalOpen, setModalOpen] = useState(false)
+
+  const open = ()=> setModalOpen(true)
+  const close = ()=> setModalOpen(false)
+
+
+  const [tasks, setTasks] = useState([{id: 1,task:"task 1", select:""}, {id: 2,task:"task 2", select:""}])
   const [displayTasks, setDisplayTasks] = useState(false)
   const [checked, setChecked] = useState(false)
 
-  const checkboxAnimationRef = useSpringRef();
-  const checkboxAnimationStyle = useSpring({
-    backgroundColor: checked ? "#808" : "#fff",
-    borderColor: checked ? "#808" : "#ddd",
-    config: config.gentle,
-    ref: checkboxAnimationRef
-  });
-
-  const [checkmarkLength, setCheckmarkLength] = useState(null);
-
-  const checkmarkAnimationRef = useSpringRef();
-  const checkmarkAnimationStyle = useSpring({
-    x: checked ? 0 : checkmarkLength,
-    config: config.gentle,
-    ref: checkmarkAnimationRef
-  });
-
-  useChain(
-    checked
-      ? [checkboxAnimationRef, checkmarkAnimationRef]
-      : [checkmarkAnimationRef, checkboxAnimationRef],
-    [0, 0.1]
-  );
-
-  
-  function addTasks(){
-    setPopUp(popUp => !popUp)
-  }
 
   function handleChangeForm(e) {
     const{name, value, type, checked} = e.target
@@ -60,9 +31,8 @@ function App() {
 }
 
 function createTask(){
-  console.log(tasks)
   setDisplayTasks(displayTasks => !displayTasks)
-  addTasks()
+  setTasks(tasks => [...tasks, {tasks}])
 }
 
 function checkBtn() {
@@ -73,6 +43,10 @@ const underline = {
   textDecoration : checked ? 'line-through' : "none"
 }
 
+function removeTask(id){
+  setTasks(tasks => tasks.filter(task => task.id === id))
+}
+
 return (
     <div className="container">
       <header>
@@ -80,40 +54,11 @@ return (
       </header>
 
       <main>
-        {popUp &&
-          <div className="add-task">
-            <h2>ADD TODO</h2>
-          <form action="" onSubmit={handleSubmit}>  
-            <h3>Task Name</h3>
-            <input 
-            type="text" 
-            placeholder="Task" 
-            name="task" 
-            value={tasks.task} 
-            onChange={handleChangeForm} />
-
-            <h3>Status</h3>
-              <select 
-              name="select" 
-              value={tasks.select} 
-              onChange={handleChangeForm}>
-                <option default>All</option>
-                <option value="">Incomplete</option>
-                <option value="">Complete</option>
-              </select>
-
-            <div className="create-task-btn">
-             <button type="submit" onClick={createTask}>Create</button>
-             <button onClick={addTasks}>Cancel</button>
-            </div>
-  
-          </form>
-        </div>
-        }
+        {modalOpen && <Modal handleSubmit={handleSubmit} tasks={tasks} handleChangeForm={handleChangeForm} createTask={createTask} modalOpen={modalOpen} handleClose={close} />}
         <div className="creating-tasks" >
           <button
-          onClick={addTasks}
-          >add a task</button>
+          onClick={()=> (modalOpen ? close() : open())}
+          >Add Task</button>
           <form>
             <select name="" id="">
               <option default>All</option>
@@ -122,44 +67,8 @@ return (
             </select>
           </form>
         </div>
-        <div className="all-tasks">
-          {tasks.map(task=> (
-            <div className="task" key={nanoid()}>
-             <div>
-             <label>
-                <input type="checkbox" onChange={checkBtn} />
-                <animated.svg
-                style={checkboxAnimationStyle}
-                className={`checkbox ${checked ? "checkbox--active" : ""}`}
-                aria-hidden="true"
-                viewBox="0 0 15 11"
-                fill="none"
-                >
-                 <animated.path
-                    d="M1 4.5L5 9L14 1"
-                    strokeWidth="2"
-                    stroke="#fff"
-                    ref={(ref) => {
-                      if (ref) {
-                      setCheckmarkLength(ref.getTotalLength());
-                      }
-                        }}
-                       strokeDasharray={checkmarkLength}
-                       strokeDashoffset={checkmarkAnimationStyle.x}
-                />
-              </animated.svg>
-              </label>
-              <p style={underline} >{task.task}</p>
-             </div>
-              <div>
-              <button> <MdDelete/> </button>
-              <button> <MdCreate/> </button>
-              </div>
-            </div>
-          ))}
-        </div>
+        <Tasks tasks={tasks} checkBtn={checkBtn} removeTask={removeTask} checked={checked} underline={underline} displayTasks={displayTasks} />
       </main>
-
     </div>
   );
 }
