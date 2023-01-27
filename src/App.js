@@ -1,10 +1,14 @@
 import { useState } from "react";
+import { nanoid } from "nanoid";
 
 function App() {
 
   const [popUp, setPopUp] = useState(false)
-  const [tasks, setTasks] = useState({task:"", select:""})
+  const [tasks, setTasks] = useState([{task:"eat", select:"All"}])
+  const [displayTasks, setDisplayTasks] = useState(false)
+  const [checked, setChecked] = useState(false)
 
+  
   function addTasks(){
     setPopUp(popUp => !popUp)
   }
@@ -18,8 +22,23 @@ function App() {
     }})
   }
 
-  function handleSubmit(){
+  function handleSubmit(e){
+    e.preventDefault()
     setTasks(tasks => tasks)
+}
+
+function createTask(){
+  console.log(tasks)
+  setDisplayTasks(displayTasks => !displayTasks)
+  addTasks()
+}
+
+function checkBtn() {
+  setChecked(checked => !checked)
+}
+
+const underline = {
+  textDecoration : checked ? 'line-through' : "none"
 }
 
 return (
@@ -52,7 +71,7 @@ return (
               </select>
 
             <div className="create-task-btn">
-             <button type="submit">Create</button>
+             <button type="submit" onClick={createTask}>Create</button>
              <button onClick={addTasks}>Cancel</button>
             </div>
   
@@ -72,7 +91,13 @@ return (
           </form>
         </div>
         <div className="all-tasks">
-
+          {tasks.map(task=> (
+            <div className="task" key={nanoid()}>
+              <button onClick={checkBtn} >Check</button>
+              <p style={underline} >{task.task}</p>
+              <p>{task.select}</p>
+            </div>
+          ))}
         </div>
       </main>
 

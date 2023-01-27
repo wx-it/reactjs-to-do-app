@@ -44,6 +44,23 @@ main{
   height: 100px;
   border-radius: 10px;
   margin-top: 1rem;
+  padding: .5rem ;
+}
+
+.task{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f4f4f4;
+  cursor: pointer;
+  margin: 1rem;
+  padding: 0.25rem 1rem;
+  border-radius: 5px;
+}
+
+.all-tasks p{
+  font-weight: 700;
+  color: rgb(28, 77, 94);
 }
 
 
@@ -93,7 +110,7 @@ main{
 .create-task-btn{
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
   gap: 1rem;
   width: 90%;
   margin: 2rem 0;
