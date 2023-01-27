@@ -77,14 +77,6 @@ main{
   padding: 0.25rem 1rem;
   border-radius: 5px;
 }
-/* 
-.task button{
-  border: none;
-  background-color: transparent;
-  color: rgb(173, 140, 252);
-  font-size: 18px;
-  border: 1px red solid;
-} */
 
 input[type="checkbox"] {
   clip: rect(0 0 0 0);
