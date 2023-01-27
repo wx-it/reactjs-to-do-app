@@ -7,7 +7,7 @@ import {
   useSpringRef,
   useChain
 } from "react-spring";
-
+import { MdDelete, MdCreate } from "react-icons/md";
 
 function App() {
 
@@ -125,7 +125,8 @@ return (
         <div className="all-tasks">
           {tasks.map(task=> (
             <div className="task" key={nanoid()}>
-              <label>
+             <div>
+             <label>
                 <input type="checkbox" onChange={checkBtn} />
                 <animated.svg
                 style={checkboxAnimationStyle}
@@ -149,8 +150,11 @@ return (
               </animated.svg>
               </label>
               <p style={underline} >{task.task}</p>
-              <button>delete</button>
-              <button>edit</button>
+             </div>
+              <div>
+              <button> <MdDelete/> </button>
+              <button> <MdCreate/> </button>
+              </div>
             </div>
           ))}
         </div>
