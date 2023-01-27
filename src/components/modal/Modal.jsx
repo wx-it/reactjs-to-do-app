@@ -1,12 +1,27 @@
 import { motion } from "framer-motion"
 import Backdrop from "../backdrop/Backdrop"
+import { useState } from "react"
 
-const Modal = ({handleClose, handleSubmit, tasks, handleChangeForm, createTask}) => {
+const Modal = ({handleClose, createTask}) => {
 
     const dropIn={
         hidden:{ y:"-100vh", opacity: 0 },
         visible:{y:"0", opacity: 1, transition:{ duration: 0.1, type: "spring", damping:20, stifness: 500 } },
         exit:{y:"100vh", opacity:0}
+    }
+
+    const [text, setText] = useState('')
+    const [select, setSelect] = useState('')
+
+    function onSubmit(e){
+        e.preventDefault()
+        if(!text){
+            alert('type something first')
+            return
+        }
+        createTask({text, select})
+        setText('')
+        setSelect('')
     }
 
   return (
@@ -22,20 +37,19 @@ const Modal = ({handleClose, handleSubmit, tasks, handleChangeForm, createTask})
 
         <div className="add-task">
             <h2>ADD TODO</h2>
-          <form action="" onSubmit={handleSubmit}>  
+          <form action="" onSubmit={onSubmit}>  
             <h3>Task Name</h3>
             <input 
             type="text" 
             placeholder="Task" 
-            name="task" 
-            value={tasks.task} 
-            onChange={handleChangeForm} />
+            value={text} 
+            onChange={(e)=>setText(e.currentTarget.value)} />
 
             <h3>Status</h3>
               <select 
               name="select" 
-              value={tasks.select} 
-              onChange={handleChangeForm}>
+              value={select} 
+              onChange={(e)=>setSelect(e.currentTarget.value)}>
                 <option default>All</option>
                 <option value="">Incomplete</option>
                 <option value="">Complete</option>
@@ -45,7 +59,6 @@ const Modal = ({handleClose, handleSubmit, tasks, handleChangeForm, createTask})
              <button type="submit" onClick={createTask}>Create</button>
              <button onClick={handleClose} >Cancel</button>
             </div>
-  
           </form>
         </div>
 

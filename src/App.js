@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Modal from "./components/modal/Modal";
 import Tasks from "./components/tasks/Tasks";
+import { nanoid } from "nanoid";
 
 function App() {
 
@@ -11,7 +12,7 @@ function App() {
   const close = ()=> setModalOpen(false)
 
 
-  const [tasks, setTasks] = useState([{id: 1,task:"task 1", select:""}, {id: 2,task:"task 2", select:""}])
+  const [tasks, setTasks] = useState([{id: 1, text:"eat", select:"all"}])
   const [displayTasks, setDisplayTasks] = useState(false)
   const [checked, setChecked] = useState(false)
 
@@ -25,14 +26,11 @@ function App() {
     }})
   }
 
-  function handleSubmit(e){
-    e.preventDefault()
-    setTasks(tasks => tasks)
-}
-
-function createTask(){
-  setDisplayTasks(displayTasks => !displayTasks)
-  setTasks(tasks => [...tasks, {tasks}])
+function createTask(task){
+  let id = Math.floor(Math.random() * 1000) + 1
+  const newTask = {id, ...task}
+  setTasks([...tasks, newTask])
+  console.log(tasks)
 }
 
 function checkBtn() {
@@ -44,7 +42,7 @@ const underline = {
 }
 
 function removeTask(id){
-  setTasks(tasks => tasks.filter(task => task.id === id))
+  setTasks(tasks => tasks.filter(task => task.id !== id))
 }
 
 return (
@@ -54,7 +52,7 @@ return (
       </header>
 
       <main>
-        {modalOpen && <Modal handleSubmit={handleSubmit} tasks={tasks} handleChangeForm={handleChangeForm} createTask={createTask} modalOpen={modalOpen} handleClose={close} />}
+        {modalOpen && <Modal tasks={tasks} handleChangeForm={handleChangeForm} createTask={createTask} modalOpen={modalOpen} handleClose={close} />}
         <div className="creating-tasks" >
           <button
           onClick={()=> (modalOpen ? close() : open())}

@@ -63,7 +63,7 @@ const Task = ({tasks, checkBtn, removeTask, checked, underline, task}) => {
                 />
               </animated.svg>
               </label>
-              <p style={underline} >{task.task}</p>
+              <p style={underline} >{task.text}</p>
              </div>
               <div>
               <button onClick={()=> removeTask(tasks.id)}> <MdDelete/> </button>
