@@ -1,4 +1,5 @@
 import Task from "./Task";
+import './tasks.css'
 
 const Tasks = ({tasks, checkBtn, removeTask, checked, underline, displayTasks}) => {
 

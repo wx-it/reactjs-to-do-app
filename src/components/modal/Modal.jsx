@@ -1,14 +1,30 @@
 import { motion } from "framer-motion"
 import Backdrop from "../backdrop/Backdrop"
 import { useState } from "react"
+import "./modal.css"
 
-const Modal = ({handleClose, createTask, text, select, onSubmit, setText, setSelect}) => {
+const Modal = ({handleClose, createTask}) => {
 
-    const dropIn={
-        hidden:{ y:"-100vh", opacity: 0 },
-        visible:{y:"0", opacity: 1, transition:{ duration: 0.1, type: "spring", damping:20, stifness: 500 } },
-        exit:{y:"100vh", opacity:0}
-    }
+const dropIn={
+  hidden:{ y:"-100vh", opacity: 0 },
+  visible:{y:"0", opacity: 1, transition:{ duration: 0.1, type: "spring", damping:20, stifness: 500 } },
+  exit:{y:"100vh", opacity:0}
+}
+
+    
+const [text, setText] = useState('')
+const [select, setSelect] = useState('')
+
+const onSubmit= (e)=>{
+  e.preventDefault()
+  if(!text){
+    alert('type something first')
+    return
+  }
+  createTask({text, select}) 
+  setText('')
+  setSelect('')
+}
 
 
   return (
@@ -25,7 +41,7 @@ const Modal = ({handleClose, createTask, text, select, onSubmit, setText, setSel
         <div className="add-task">
             <h2>ADD TODO</h2>
           <form action="" onSubmit={onSubmit}>  
-            <label>Task Name</label>
+            <h3>Task Name</h3>
             <input 
             type="text" 
             placeholder="Task" 
@@ -33,7 +49,7 @@ const Modal = ({handleClose, createTask, text, select, onSubmit, setText, setSel
             value={text} 
             onChange={(e)=>setText(e.currentTarget.value)} />
 
-            <label>Status</label>
+            <h3>Status</h3>
               <select 
               name="select" 
               value={select} 
@@ -44,7 +60,8 @@ const Modal = ({handleClose, createTask, text, select, onSubmit, setText, setSel
               </select>
 
             <div className="create-task-btn">
-             <button type="submit" onClick={close}>Create</button>
+             <button type="submit">Create</button>
+             <button onClick={handleClose} >Close</button>
             </div>
           </form>
         </div>

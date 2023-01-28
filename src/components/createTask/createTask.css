@@ -1,0 +1,21 @@
+.creating-tasks{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .creating-tasks button{
+    border: none;
+    background-color: rgb(173, 140, 252);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .creating-tasks select{
+    border: none;
+    background-color:  #ddd;
+    padding: 0.5rem 0.75rem;
+    border-radius: 5px;
+  }

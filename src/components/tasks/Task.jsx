@@ -9,13 +9,18 @@ import {
 } from "react-spring";
 import { MdDelete, MdCreate } from "react-icons/md";
 import { useState } from "react";
-const Task = ({tasks, checkBtn, removeTask, checked, underline, task}) => {
+import './tasks.css'
 
+const Task = ({tasks, checkBtn, removeTask, task}) => {
+  
+const underline = {
+  textDecoration : task.check ? 'line-through' : "none"
+}
 
     const checkboxAnimationRef = useSpringRef();
     const checkboxAnimationStyle = useSpring({
-      backgroundColor: checked ? "#808" : "#fff",
-      borderColor: checked ? "#808" : "#ddd",
+      backgroundColor: task.check ? "#808" : "#fff",
+      borderColor: task.check ? "#808" : "#ddd",
       config: config.gentle,
       ref: checkboxAnimationRef
     });
@@ -24,13 +29,13 @@ const Task = ({tasks, checkBtn, removeTask, checked, underline, task}) => {
   
     const checkmarkAnimationRef = useSpringRef();
     const checkmarkAnimationStyle = useSpring({
-      x: checked ? 0 : checkmarkLength,
+      x: task.check ? 0 : checkmarkLength,
       config: config.gentle,
       ref: checkmarkAnimationRef
     });
   
     useChain(
-      checked
+      task.check
         ? [checkboxAnimationRef, checkmarkAnimationRef]
         : [checkmarkAnimationRef, checkboxAnimationRef],
       [0, 0.1]
@@ -41,10 +46,10 @@ const Task = ({tasks, checkBtn, removeTask, checked, underline, task}) => {
     <div className="task" key={nanoid()}>
              <div>
              <label>
-                <input type="checkbox" onChange={checkBtn} />
+                <input type="checkbox" onChange={()=> checkBtn(task.id)} />
                 <animated.svg
                 style={checkboxAnimationStyle}
-                className={`checkbox ${checked ? "checkbox--active" : ""}`}
+                className={`checkbox ${task.check ? "checkbox--active" : ""}`}
                 aria-hidden="true"
                 viewBox="0 0 15 11"
                 fill="none"
