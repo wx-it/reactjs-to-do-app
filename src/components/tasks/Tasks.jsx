@@ -1,7 +1,7 @@
 import Task from "./Task";
 import './tasks.css'
 
-const Tasks = ({tasks, checkBtn, removeTask, checked, underline, displayTasks}) => {
+const Tasks = ({tasks, checkBtn, removeTask}) => {
 
     
 
@@ -9,7 +9,7 @@ const Tasks = ({tasks, checkBtn, removeTask, checked, underline, displayTasks}) 
   return (
     <div className="all-tasks">
           {tasks.length > 0 ? tasks.map(task=> (
-            <Task key={task.id} task={task} checkBtn={checkBtn} removeTask={removeTask} checked={checked} underline={underline} />
+            <Task key={task.id} task={task} checkBtn={checkBtn} removeTask={removeTask} />
           )) : <p>No Tasks</p>}
     </div>
   ) 
