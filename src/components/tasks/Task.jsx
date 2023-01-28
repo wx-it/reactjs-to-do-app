@@ -66,7 +66,7 @@ const Task = ({tasks, checkBtn, removeTask, checked, underline, task}) => {
               <p style={underline} >{task.text}</p>
              </div>
               <div>
-              <button onClick={()=> removeTask(tasks.id)}> <MdDelete/> </button>
+              <button onClick={()=> removeTask(task.id)}> <MdDelete/> </button>
               <button> <MdCreate/> </button>
               </div>
             </div>

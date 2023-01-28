@@ -2,7 +2,7 @@ import { motion } from "framer-motion"
 import Backdrop from "../backdrop/Backdrop"
 import { useState } from "react"
 
-const Modal = ({handleClose, createTask}) => {
+const Modal = ({handleClose, createTask, text, select, onSubmit, setText, setSelect}) => {
 
     const dropIn={
         hidden:{ y:"-100vh", opacity: 0 },
@@ -10,19 +10,6 @@ const Modal = ({handleClose, createTask}) => {
         exit:{y:"100vh", opacity:0}
     }
 
-    const [text, setText] = useState('')
-    const [select, setSelect] = useState('')
-
-    function onSubmit(e){
-        e.preventDefault()
-        if(!text){
-            alert('type something first')
-            return
-        }
-        createTask({text, select})
-        setText('')
-        setSelect('')
-    }
 
   return (
     <Backdrop onClick={handleClose} >
@@ -38,14 +25,15 @@ const Modal = ({handleClose, createTask}) => {
         <div className="add-task">
             <h2>ADD TODO</h2>
           <form action="" onSubmit={onSubmit}>  
-            <h3>Task Name</h3>
+            <label>Task Name</label>
             <input 
             type="text" 
             placeholder="Task" 
+            name="text"
             value={text} 
             onChange={(e)=>setText(e.currentTarget.value)} />
 
-            <h3>Status</h3>
+            <label>Status</label>
               <select 
               name="select" 
               value={select} 
@@ -56,8 +44,7 @@ const Modal = ({handleClose, createTask}) => {
               </select>
 
             <div className="create-task-btn">
-             <button type="submit" onClick={createTask}>Create</button>
-             <button onClick={handleClose} >Cancel</button>
+             <button type="submit" onClick={close}>Create</button>
             </div>
           </form>
         </div>

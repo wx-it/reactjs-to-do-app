@@ -33,8 +33,9 @@ main{
 }
 
 .creating-tasks select{
-  border: 1px rgb(173, 140, 252) solid;
-  padding: 0.25rem;
+  border: none;
+  background-color:  #ddd;
+  padding: 0.5rem 0.75rem;
   border-radius: 5px;
 }
 
@@ -119,7 +120,7 @@ input[type="checkbox"] {
   color: rgb(73, 73, 73);
 }
 
-.add-task h3{
+.add-task label{
   color: rgb(129, 125, 133);
   font-size: 16px;
 }

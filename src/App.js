@@ -12,25 +12,26 @@ function App() {
   const close = ()=> setModalOpen(false)
 
 
-  const [tasks, setTasks] = useState([{id: 1, text:"eat", select:"all"}])
+  const [tasks, setTasks] = useState([
+    {
+      id: 1,
+      text: "Finish this task app",
+      select: "Incomplete"
+    },
+    {
+      id: 2,
+      text: "Have Lunch",
+      select: "All"
+    },
+
+  ])
   const [displayTasks, setDisplayTasks] = useState(false)
   const [checked, setChecked] = useState(false)
 
-
-  function handleChangeForm(e) {
-    const{name, value, type, checked} = e.target
-    setTasks(prevTasks =>{
-        return{
-             ...prevTasks,
-             [name] : type === 'checkbox' ? checked : value
-    }})
-  }
-
-function createTask(task){
+const createTask = (task)=>{
   let id = Math.floor(Math.random() * 1000) + 1
   const newTask = {id, ...task}
   setTasks([...tasks, newTask])
-  console.log(tasks)
 }
 
 function checkBtn() {
@@ -45,6 +46,21 @@ function removeTask(id){
   setTasks(tasks => tasks.filter(task => task.id !== id))
 }
 
+
+const [text, setText] = useState('')
+const [select, setSelect] = useState('')
+
+const onSubmit= (e)=>{
+    e.preventDefault()
+    if(!text){
+        alert('type something first')
+        return
+    }
+    createTask({text, select}) 
+    setText('')
+    setSelect('')
+}
+
 return (
     <div className="container">
       <header>
@@ -52,7 +68,7 @@ return (
       </header>
 
       <main>
-        {modalOpen && <Modal tasks={tasks} handleChangeForm={handleChangeForm} createTask={createTask} modalOpen={modalOpen} handleClose={close} />}
+        {modalOpen && <Modal tasks={tasks} text={text} select={select} onSubmit={onSubmit} setText={setText} setSelect={setSelect} createTask={createTask} modalOpen={modalOpen} handleClose={close} />}
         <div className="creating-tasks" >
           <button
           onClick={()=> (modalOpen ? close() : open())}
