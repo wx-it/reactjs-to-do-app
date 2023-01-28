@@ -31,7 +31,12 @@ function checkBtn(id) {
 
 }
 
+const [showTask, setShowTask] = useState(true)
+
 function removeTask(id){
+  setTimeout(()=>{
+    setShowTask(false)
+  }, 4000)
   setTasks(tasks => tasks.filter(task => task.id !== id))
 }
 
@@ -44,7 +49,7 @@ return (
       <main>
         {modalOpen && <Modal tasks={tasks} createTask={createTask} modalOpen={modalOpen} handleClose={close} />}
         <CreateTask modalOpen={modalOpen} open={open} close={close} />
-        <Tasks tasks={tasks} checkBtn={checkBtn} removeTask={removeTask} />
+        <Tasks tasks={tasks} checkBtn={checkBtn} removeTask={removeTask} showTask={showTask} />
       </main>
     </div>
   );

@@ -1,17 +1,18 @@
 import React from 'react'
 import { nanoid } from "nanoid";
-import {
-  animated,
-  useSpring,
-  config,
-  useSpringRef,
-  useChain
-} from "react-spring";
+import { animated, useSpring, config, useSpringRef, useChain } from "react-spring";
 import { MdDelete, MdCreate } from "react-icons/md";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion"
+
 import './tasks.css'
 
-const Task = ({tasks, checkBtn, removeTask, task}) => {
+const Task = ({checkBtn, removeTask, task, showTask}) => {
+
+  const itemVariants= {
+    hidden:{opacity: 0},
+    visible:{opacity: 1, transition: {duration: 1}}
+  }
   
 const underline = {
   textDecoration : task.check ? 'line-through' : "none"
@@ -41,11 +42,11 @@ const underline = {
       [0, 0.1]
     );
 
-
   return (
-    <div className="task" key={nanoid()}>
-             <div>
-             <label>
+    <AnimatePresence>
+        <motion.div variants={itemVariants} initial="hidden" animate="visible" exit="hidden" className="task" key={nanoid()}>
+            <div>
+              <label>
                 <input type="checkbox" onChange={()=> checkBtn(task.id)} />
                 <animated.svg
                 style={checkboxAnimationStyle}
@@ -73,8 +74,9 @@ const underline = {
               <div>
               <button onClick={()=> removeTask(task.id)}> <MdDelete/> </button>
               <button> <MdCreate/> </button>
-              </div>
             </div>
+     </motion.div>
+    </AnimatePresence>
   )
 }
 
