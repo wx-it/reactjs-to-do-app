@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Modal from "./components/modal/Modal";
 import Tasks from "./components/tasks/Tasks";
 import CreateTask from "./components/createTask/CreateTask";
@@ -34,9 +34,6 @@ function checkBtn(id) {
 const [showTask, setShowTask] = useState(true)
 
 function removeTask(id){
-  setTimeout(()=>{
-    setShowTask(false)
-  }, 4000)
   setTasks(tasks => tasks.filter(task => task.id !== id))
 }
 
@@ -47,8 +44,11 @@ return (
       </header>
 
       <main>
+        <AnimatePresence initial={false} mode="wait" >
         {modalOpen && <Modal tasks={tasks} createTask={createTask} modalOpen={modalOpen} handleClose={close} />}
+        </AnimatePresence>
         <CreateTask modalOpen={modalOpen} open={open} close={close} />
+        
         <Tasks tasks={tasks} checkBtn={checkBtn} removeTask={removeTask} showTask={showTask} />
       </main>
     </div>

@@ -9,19 +9,14 @@ import './tasks.css'
 
 const Task = ({checkBtn, removeTask, task, showTask}) => {
 
-  const itemVariants= {
-    hidden:{opacity: 0},
-    visible:{opacity: 1, transition: {duration: 1}}
-  }
-  
 const underline = {
   textDecoration : task.check ? 'line-through' : "none"
 }
 
     const checkboxAnimationRef = useSpringRef();
     const checkboxAnimationStyle = useSpring({
-      backgroundColor: task.check ? "#808" : "#fff",
-      borderColor: task.check ? "#808" : "#ddd",
+      backgroundColor: task.check ? "rgb(129, 77, 250)" : "#fff",
+      borderColor: task.check ? "rgb(129, 77, 250)" : "#ddd",
       config: config.gentle,
       ref: checkboxAnimationRef
     });
@@ -43,8 +38,12 @@ const underline = {
     );
 
   return (
-    <AnimatePresence>
-        <motion.div variants={itemVariants} initial="hidden" animate="visible" exit="hidden" className="task" key={nanoid()}>
+        <motion.div
+          className="task" 
+          initial={{ x: -300, opacity: 0 }}
+          animate={{ x: 0, opacity: 1, zIndex: 2, transition:{ duration: 0.1, type: "spring", damping:20, stifness: 500 } }}
+          exit={{ x: 300, opacity: 0 }}
+          >
             <div>
               <label>
                 <input type="checkbox" onChange={()=> checkBtn(task.id)} />
@@ -75,8 +74,7 @@ const underline = {
               <button onClick={()=> removeTask(task.id)}> <MdDelete/> </button>
               <button> <MdCreate/> </button>
             </div>
-     </motion.div>
-    </AnimatePresence>
+       </motion.div>
   )
 }
 

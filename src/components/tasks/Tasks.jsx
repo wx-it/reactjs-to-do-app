@@ -10,9 +10,11 @@ const Tasks = ({tasks, checkBtn, removeTask, showTask}) => {
 
   return (
     <div className="all-tasks">
+      <AnimatePresence initial={false} mode='wait'>
           {tasks.length > 0 ? tasks.map(task=> (
             <Task key={task.id} task={task} checkBtn={checkBtn} removeTask={removeTask} showTask={showTask} />
-          )) : <p>No Tasks</p>}
+            )) : <p>No Tasks</p>}
+      </AnimatePresence>
     </div>
   ) 
 }

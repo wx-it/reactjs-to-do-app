@@ -3,14 +3,7 @@ import Backdrop from "../backdrop/Backdrop"
 import { useState } from "react"
 import "./modal.css"
 
-const Modal = ({handleClose, createTask}) => {
-
-const dropIn={
-  hidden:{ y:"-100vh", opacity: 0 },
-  visible:{y:"0", opacity: 1, transition:{ duration: 0.1, type: "spring", damping:20, stifness: 500 } },
-  exit:{y:"100vh", opacity:0}
-}
-
+const Modal = ({handleClose, createTask, modalOpen}) => {
     
 const [text, setText] = useState('')
 const [select, setSelect] = useState('')
@@ -31,11 +24,11 @@ const onSubmit= (e)=>{
     <Backdrop onClick={handleClose} >
 
         <motion.div
+        key="modal"
         onClick={(e)=> e.stopPropagation()}
-        variants={dropIn}
-        initial="hidden"
-        animate="visible"
-        exit="exit"
+        initial={{ y: 300, opacity: 0 }}
+        animate={{ y: 0, opacity: 1, zIndex: 2, transition:{ duration: 0.1, type: "spring", damping:20, stifness: 500 } }}
+        exit={{ y: -300, opacity: 0 }}
         >
 
         <div className="add-task">
@@ -61,7 +54,7 @@ const onSubmit= (e)=>{
 
             <div className="create-task-btn">
              <button type="submit">Create</button>
-             <button onClick={handleClose} >Close</button>
+             <button type="button" onClick={handleClose} >Close</button>
             </div>
           </form>
         </div>
