@@ -48,8 +48,10 @@ useEffect(()=>{
     }
     let allTasks = tasksList.filter((task=> task.select === filterSelect))
     setTasks([...new Set(allTasks)])
-    console.log(filterSelect)
   }    
+
+  let filters = useMemo(filterStatus, [filterSelect])
+   
 
 return (
     <div className="container">

@@ -10,7 +10,7 @@ const CreateTask = ({modalOpen, open, close, tasks, setFilterSelect, filterSelec
           onClick={()=> (modalOpen ? close() : open())}
           >Add Task</button>
           <form>
-            <select name="filteredSelect" onChange={(e)=> {setFilterSelect(e.currentTarget.value)}} onClick={filterStatus}>
+            <select name="filteredSelect" onChange={(e)=> {setFilterSelect(e.currentTarget.value)}}>
               <option value="">All</option>
               <option value="incomplete" >Incomplete</option>
               <option value="complete">Complete</option>
