@@ -47,9 +47,9 @@ const onSubmit= (e)=>{
               name="select" 
               value={select} 
               onChange={(e)=>setSelect(e.currentTarget.value)}>
-                <option default>All</option>
-                <option value="">Incomplete</option>
-                <option value="">Complete</option>
+                <option value="all">All</option>
+                <option value="incomplete">Incomplete</option>
+                <option value="complete">Complete</option>
               </select>
 
             <div className="create-task-btn">

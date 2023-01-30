@@ -1,13 +1,12 @@
 import React from 'react'
-import { nanoid } from "nanoid";
 import { animated, useSpring, config, useSpringRef, useChain } from "react-spring";
 import { MdDelete, MdCreate } from "react-icons/md";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 
 import './tasks.css'
 
-const Task = ({checkBtn, removeTask, task, showTask}) => {
+const Task = ({checkBtn, removeTask, task}) => {
 
 const underline = {
   textDecoration : task.check ? 'line-through' : "none"
@@ -40,9 +39,9 @@ const underline = {
   return (
         <motion.div
           className="task" 
-          initial={{ x: -300, opacity: 0 }}
-          animate={{ x: 0, opacity: 1, zIndex: 2, transition:{ duration: 0.1, type: "spring", damping:20, stifness: 500 } }}
-          exit={{ x: 300, opacity: 0 }}
+          initial={{ y: 30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1, zIndex: 2, transition:{ duration: 0.1, type: "spring", damping:20, stifness: 500 } }}
+          exit={{ y: -30, opacity: 0 }}
           >
             <div>
               <label>
