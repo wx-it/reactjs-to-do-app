@@ -12,7 +12,7 @@ import { motion } from "framer-motion";
 
 import "./tasks.css";
 
-const Task = ({ checkBtn, removeTask, task }) => {
+const Task = ({ checkBtn, removeTask, task, editTask }) => {
   const underline = {
     textDecoration: task.check ? "line-through" : "none",
   };
@@ -89,7 +89,7 @@ const Task = ({ checkBtn, removeTask, task }) => {
           {" "}
           <MdDelete />{" "}
         </button>
-        <button>
+        <button onClick={()=> editTask(task.id)} >
           {" "}
           <MdCreate />{" "}
         </button>

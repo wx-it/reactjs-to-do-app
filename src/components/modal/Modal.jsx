@@ -3,12 +3,34 @@ import Backdrop from "../backdrop/Backdrop";
 import { useState } from "react";
 import "./modal.css";
 
-const Modal = ({ handleClose, createTask, modalOpen }) => {
-  const [text, setText] = useState("");
-  const [select, setSelect] = useState("");
-
+const Modal = ({
+  handleClose,
+  createTask,
+  text,
+  select,
+  setSelect,
+  setText,
+  editId,
+  setEditId,
+  tasks,
+  setTasks,
+}) => {
   const onSubmit = (e) => {
     e.preventDefault();
+
+    if (editId) {
+      const editTodo = tasks.find((task) => task.id === editId);
+      const updateTask = tasks.map((task) =>
+        task.id === editTodo.id
+          ? (task = { id: task.id, text })
+          : { id: task.id, text: task.text }
+      );
+      setTasks(updateTask);
+      setEditId(0);
+      setText("");
+      return;
+    }
+
     if (!text) {
       alert("type something first");
       return;
@@ -38,7 +60,7 @@ const Modal = ({ handleClose, createTask, modalOpen }) => {
         exit={{ y: -300, opacity: 0 }}
       >
         <div className="add-task">
-          <h2>ADD TODO</h2>
+          <h2> {editId ? "EDIT TODO" : "ADD TODO"} </h2>
           <form action="" onSubmit={onSubmit}>
             <h3>Task Name</h3>
             <input
@@ -61,7 +83,7 @@ const Modal = ({ handleClose, createTask, modalOpen }) => {
             </select>
 
             <div className="create-task-btn">
-              <button type="submit">Create</button>
+              <button type="submit"> {editId ? "Edit" : "Create"} </button>
               <button type="button" onClick={handleClose}>
                 Close
               </button>

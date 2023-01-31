@@ -8,6 +8,9 @@ import data from "./data";
 function App() {
   const [tasks, setTasks] = useState(data || []);
   const [modalOpen, setModalOpen] = useState(false);
+  const [text, setText] = useState("");
+  const [select, setSelect] = useState("");
+  const [editId, setEditId] = useState(0)
 
   const open = () => setModalOpen(true);
   const close = () => setModalOpen(false);
@@ -29,15 +32,23 @@ function App() {
   }
 
   function removeTask(id) {
-    setTasks((tasks) => tasks.filter((task) => task.id !== id));
+    const deleteTask = tasks.filter((task) => task.id !== id)
+    setTasks([...deleteTask]);
   }
 
-  // function filterStatus(state) {
-  //   const setState = data.filter((item) => {
-  //     return item.select === state;
-  //   });
-  //   setTasks(setState);
-  // }
+  //  function filterStatus(state) {
+  //    const setState = data.filter((item) => {
+  //      return item.select === state;
+  //    });
+  //    setTasks(setState);
+  //  }
+
+  const editTask = (id) =>{
+    const edit = tasks.find(task => task.id === id)
+    setText(edit.text)
+    setEditId(id)
+    open()  
+  }
 
   return (
     <div className="container">
@@ -50,9 +61,16 @@ function App() {
           {modalOpen && (
             <Modal
               tasks={tasks}
+              setTasks={setTasks}
               createTask={createTask}
               modalOpen={modalOpen}
               handleClose={close}
+              text={text}
+              setText={setText}
+              select={select}
+              setSelect={setSelect}
+              editId={editId}
+              setEditId={setEditId}
             />
           )}
         </AnimatePresence>
@@ -65,7 +83,7 @@ function App() {
           tasks={tasks}
           // filterStatus={filterStatus}
         />
-        <Tasks tasks={tasks} checkBtn={checkBtn} removeTask={removeTask} />
+        <Tasks tasks={tasks} checkBtn={checkBtn} removeTask={removeTask} editTask={editTask} />
       </main>
     </div>
   );

@@ -1,6 +1,6 @@
 import "./createTask.css";
 
-const CreateTask = ({ modalOpen, open, close }) => {
+const CreateTask = ({ modalOpen, open, close, filterStatus }) => {
   return (
     <div className="creating-tasks">
       <button onClick={() => (modalOpen ? close() : open())}>Add Task</button>

@@ -2,7 +2,7 @@ import Task from "./Task";
 import "./tasks.css";
 import { motion, AnimatePresence } from "framer-motion";
 
-const Tasks = ({ tasks, checkBtn, removeTask }) => {
+const Tasks = ({ tasks, checkBtn, removeTask, editTask }) => {
   return (
     <div className="all-tasks">
       <AnimatePresence initial={false}>
@@ -13,6 +13,7 @@ const Tasks = ({ tasks, checkBtn, removeTask }) => {
               task={task}
               checkBtn={checkBtn}
               removeTask={removeTask}
+              editTask={editTask}
             />
           ))
         ) : (
