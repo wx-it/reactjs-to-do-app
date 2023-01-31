@@ -16,7 +16,7 @@ function App() {
     let id = Math.floor(Math.random() * 1000) + 1;
     let check = false;
     const newTask = { id, check, ...task };
-    data.push(newTask);
+    setTasks([...tasks, newTask])
     close();
   };
 
@@ -32,12 +32,12 @@ function App() {
     setTasks((tasks) => tasks.filter((task) => task.id !== id));
   }
 
-  function filterStatus(state) {
-    const setState = data.filter((item) => {
-      return item.select === state;
-    });
-    setTasks(setState);
-  }
+  // function filterStatus(state) {
+  //   const setState = data.filter((item) => {
+  //     return item.select === state;
+  //   });
+  //   setTasks(setState);
+  // }
 
   return (
     <div className="container">
@@ -63,7 +63,7 @@ function App() {
           setTasks={setTasks}
           data={data}
           tasks={tasks}
-          filterStatus={filterStatus}
+          // filterStatus={filterStatus}
         />
         <Tasks tasks={tasks} checkBtn={checkBtn} removeTask={removeTask} />
       </main>

@@ -1,13 +1,6 @@
 import "./createTask.css";
 
-const CreateTask = ({
-  modalOpen,
-  open,
-  close,
-  setTasks,
-  data,
-  filterStatus,
-}) => {
+const CreateTask = ({ modalOpen, open, close }) => {
   return (
     <div className="creating-tasks">
       <button onClick={() => (modalOpen ? close() : open())}>Add Task</button>
@@ -40,15 +33,9 @@ const CreateTask = ({
           Select category
         </label>
         <div className="section-dropdown">
-          <button
-            onClick={() => {
-              setTasks(data);
-            }}
-          >
-            All
-          </button>
-          <button onClick={() => filterStatus("incomplete")}>Incomplete</button>
-          <button onClick={() => filterStatus("complete")}>Complete</button>
+          <button>All</button>
+          <button>Incomplete</button>
+          <button>Complete</button>
         </div>
       </div>
     </div>
