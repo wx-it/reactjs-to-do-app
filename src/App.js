@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Modal from "./components/modal/Modal";
 import Tasks from "./components/tasks/Tasks";
 import CreateTask from "./components/createTask/CreateTask";
-import data from "./data"
+import data from "./data";
 
 function App() {
   const [tasks, setTasks] = useState(data || []);
@@ -16,7 +16,7 @@ function App() {
     let id = Math.floor(Math.random() * 1000) + 1;
     let check = false;
     const newTask = { id, check, ...task };
-    data.push(newTask)
+    data.push(newTask);
     close();
   };
 
@@ -33,12 +33,11 @@ function App() {
   }
 
   function filterStatus(state) {
-    const setState = data.filter(item =>{
-      return item.select === state
+    const setState = data.filter((item) => {
+      return item.select === state;
     });
-    setTasks(setState)
+    setTasks(setState);
   }
-
 
   return (
     <div className="container">
@@ -67,7 +66,6 @@ function App() {
           filterStatus={filterStatus}
         />
         <Tasks tasks={tasks} checkBtn={checkBtn} removeTask={removeTask} />
-        <button onClick={()=> console.log(data)} >click me</button>
       </main>
     </div>
   );
