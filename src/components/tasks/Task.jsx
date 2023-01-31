@@ -19,7 +19,7 @@ const Task = ({ checkBtn, removeTask, task, editTask }) => {
 
   const checkboxAnimationRef = useSpringRef();
   const checkboxAnimationStyle = useSpring({
-    backgroundColor: task.check ? "rgb(129, 77, 250)" : "#fff",
+    backgroundColor: task.check ? "rgb(129, 77, 250)" : "#f5f5f5",
     borderColor: task.check ? "rgb(129, 77, 250)" : "#ddd",
     config: config.gentle,
     ref: checkboxAnimationRef,
