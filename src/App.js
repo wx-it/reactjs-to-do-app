@@ -3,68 +3,71 @@ import { AnimatePresence, motion } from "framer-motion";
 import Modal from "./components/modal/Modal";
 import Tasks from "./components/tasks/Tasks";
 import CreateTask from "./components/createTask/CreateTask";
+import data from "./data"
 
 function App() {
+  const [tasks, setTasks] = useState(data || []);
+  const [modalOpen, setModalOpen] = useState(false);
 
-  const [tasks, setTasks] = useState([{id: 1, check: false, text: "all", select:"complete"},{id: 2, check: true, text: "completed", select:"complete"}, {id: 3, check: false, text: "incomplete", select:"incomplete"},])
-  const [modalOpen, setModalOpen] = useState(false)
+  const open = () => setModalOpen(true);
+  const close = () => setModalOpen(false);
 
-  const open = ()=> setModalOpen(true)
-  const close = ()=> setModalOpen(false)
+  const createTask = (task) => {
+    let id = Math.floor(Math.random() * 1000) + 1;
+    let check = false;
+    const newTask = { id, check, ...task };
+    data.push(newTask)
+    close();
+  };
 
-  
-  
-const createTask = (task)=>{
-  let id = Math.floor(Math.random() * 1000) + 1
-  let check = false
-  const newTask = {id, check, ...task}
-  setTasks([...tasks, newTask])
-  close()
-}
+  function checkBtn(id) {
+    return setTasks((task) => {
+      return task.map((task) => {
+        return task.id === id ? { ...task, check: !task.check } : task;
+      });
+    });
+  }
 
-function checkBtn(id) {
-  return setTasks(task =>{
-    return task.map(task => {
-      return task.id === id ? {...task, check: !task.check} : task
-    })
-  })
+  function removeTask(id) {
+    setTasks((tasks) => tasks.filter((task) => task.id !== id));
+  }
 
-}
+  function filterStatus(state) {
+    const setState = data.filter(item =>{
+      return item.select === state
+    });
+    setTasks(setState)
+  }
 
-function removeTask(id){
-  setTasks(tasks => tasks.filter(task => task.id !== id))
-}
 
-const [filterSelect, setFilterSelect] = useState()
-const [tasksList, setTasksList] = useState([])
-
-useEffect(()=>{
-  setTasksList(tasks)
-}, [])
-
-  function filterStatus() {
-    if(!filterSelect){
-      return tasksList;
-    }
-    let allTasks = tasksList.filter((task=> task.select === filterSelect))
-    setTasks([...new Set(allTasks)])
-  }    
-
-  let filters = useMemo(filterStatus, [filterSelect])
-   
-
-return (
+  return (
     <div className="container">
       <header>
         <h1>TODO LIST</h1>
       </header>
 
       <main>
-        <AnimatePresence initial={false} mode="wait" >
-        {modalOpen && <Modal tasks={tasks} createTask={createTask} modalOpen={modalOpen} handleClose={close} />}
+        <AnimatePresence initial={false} mode="wait">
+          {modalOpen && (
+            <Modal
+              tasks={tasks}
+              createTask={createTask}
+              modalOpen={modalOpen}
+              handleClose={close}
+            />
+          )}
         </AnimatePresence>
-        <CreateTask modalOpen={modalOpen} open={open} close={close} tasks={tasks} filterSelect={filterSelect} setFilterSelect={setFilterSelect} filterStatus={filterStatus} />
+        <CreateTask
+          modalOpen={modalOpen}
+          open={open}
+          close={close}
+          setTasks={setTasks}
+          data={data}
+          tasks={tasks}
+          filterStatus={filterStatus}
+        />
         <Tasks tasks={tasks} checkBtn={checkBtn} removeTask={removeTask} />
+        <button onClick={()=> console.log(data)} >click me</button>
       </main>
     </div>
   );
