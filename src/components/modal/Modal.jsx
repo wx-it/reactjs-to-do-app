@@ -83,7 +83,7 @@ const Modal = ({
             </select>
 
             <div className="create-task-btn">
-              <button type="submit"> {editId ? "Edit" : "Create"} </button>
+              <button type="submit" onClick={()=> editId ? handleClose(): null} > {editId ? "Edit" : "Create"} </button>
               <button type="button" onClick={handleClose}>
                 Close
               </button>
