@@ -48,7 +48,6 @@ const Task = ({ checkBtn, removeTask, task, editTask }) => {
       animate={{
         y: 0,
         opacity: 1,
-        zIndex: 2,
         transition: {
           duration: 0.1,
           type: "spring",
