@@ -28,3 +28,7 @@ main {
   justify-content: center;
   flex-direction: column;
 }
+
+.main-container{
+  width: 80%;
+}

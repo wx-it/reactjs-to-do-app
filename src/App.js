@@ -78,39 +78,41 @@ function App() {
         <SideBar />
       </header>
 
+      <AnimatePresence initial={false} mode="wait">
+        {modalOpen && (
+          <Modal
+            tasks={tasks}
+            setTasks={setTasks}
+            createTask={createTask}
+            modalOpen={modalOpen}
+            handleClose={close}
+            text={text}
+            setText={setText}
+            select={select}
+            setSelect={setSelect}
+            editId={editId}
+            setEditId={setEditId}
+          />
+        )}
+      </AnimatePresence>
       <main>
-        <AnimatePresence initial={false} mode="wait">
-          {modalOpen && (
-            <Modal
-              tasks={tasks}
-              setTasks={setTasks}
-              createTask={createTask}
-              modalOpen={modalOpen}
-              handleClose={close}
-              text={text}
-              setText={setText}
-              select={select}
-              setSelect={setSelect}
-              editId={editId}
-              setEditId={setEditId}
-            />
-          )}
-        </AnimatePresence>
-        <CreateTask
-          modalOpen={modalOpen}
-          open={open}
-          close={close}
-          setTasks={setTasks}
-          data={data}
-          tasks={tasks}
-          // filterStatus={filterStatus}
-        />
-        <Tasks
-          tasks={tasks}
-          checkBtn={checkBtn}
-          removeTask={removeTask}
-          editTask={editTask}
-        />
+        <div className="main-container">
+          <CreateTask
+            modalOpen={modalOpen}
+            open={open}
+            close={close}
+            setTasks={setTasks}
+            data={data}
+            tasks={tasks}
+            // filterStatus={filterStatus}
+          />
+          <Tasks
+            tasks={tasks}
+            checkBtn={checkBtn}
+            removeTask={removeTask}
+            editTask={editTask}
+          />
+        </div>
       </main>
     </div>
   );

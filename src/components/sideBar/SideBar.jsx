@@ -51,13 +51,13 @@ const SideBar = () => {
           <span className="ball">
             {darkMode ? (
               <div>
-                <BsFillBrightnessHighFill />
-                <p> Light</p>
+                <BsMoon />
+                <p>Dark</p>
               </div>
             ) : (
               <div>
-                <BsMoon />
-                <p>Dark</p>
+                <BsFillBrightnessHighFill />
+                <p> Light</p>
               </div>
             )}
           </span>
