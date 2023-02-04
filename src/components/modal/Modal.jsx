@@ -60,9 +60,8 @@ const Modal = ({
         exit={{ y: -300, opacity: 0 }}
       >
         <div className="add-task">
-          <h2> {editId ? "EDIT TODO" : "ADD TODO"} </h2>
+          <h2> {editId ? "EDIT TASK" : "ADD TASK"} </h2>
           <form action="" onSubmit={onSubmit}>
-            <h3>Task Name</h3>
             <input
               type="text"
               placeholder="Task"
