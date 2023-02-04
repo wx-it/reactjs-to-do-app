@@ -7,11 +7,32 @@ import data from "./data";
 import SideBar from "./components/sideBar/SideBar";
 
 function App() {
-  const [tasks, setTasks] = useState(data || []);
+  const [tasks, setTasks] = useState(
+    [
+      {
+        id: 1,
+        check: true,
+        text: "finish the tasks app",
+        state: "incomplete",
+      },
+      {
+        id: 2,
+        check: false,
+        text: "finish the tasks app",
+        state: "incomplete",
+      },
+      {
+        id: 3,
+        check: false,
+        text: "finish the tasks app",
+        state: "incomplete",
+      },
+    ] || []
+  );
   const [modalOpen, setModalOpen] = useState(false);
   const [text, setText] = useState("");
   const [select, setSelect] = useState("");
-  const [editId, setEditId] = useState(0)
+  const [editId, setEditId] = useState(0);
 
   const open = () => setModalOpen(true);
   const close = () => setModalOpen(false);
@@ -20,7 +41,7 @@ function App() {
     let id = Math.floor(Math.random() * 1000) + 1;
     let check = false;
     const newTask = { id, check, ...task };
-    setTasks([...tasks, newTask])
+    setTasks([...tasks, newTask]);
     close();
   };
 
@@ -33,7 +54,7 @@ function App() {
   }
 
   function removeTask(id) {
-    const deleteTask = tasks.filter((task) => task.id !== id)
+    const deleteTask = tasks.filter((task) => task.id !== id);
     setTasks([...deleteTask]);
   }
 
@@ -44,17 +65,17 @@ function App() {
   //    setTasks(setState);
   //  }
 
-  const editTask = (id) =>{
-    const edit = tasks.find(task => task.id === id)
-    setText(edit.text)
-    setEditId(id)
-    open()  
-  }
+  const editTask = (id) => {
+    const edit = tasks.find((task) => task.id === id);
+    setText(edit.text);
+    setEditId(id);
+    open();
+  };
 
   return (
     <div className="container">
       <header className="sideBar">
-        <SideBar/>
+        <SideBar />
       </header>
 
       <main>
@@ -84,7 +105,12 @@ function App() {
           tasks={tasks}
           // filterStatus={filterStatus}
         />
-        <Tasks tasks={tasks} checkBtn={checkBtn} removeTask={removeTask} editTask={editTask} />
+        <Tasks
+          tasks={tasks}
+          checkBtn={checkBtn}
+          removeTask={removeTask}
+          editTask={editTask}
+        />
       </main>
     </div>
   );
