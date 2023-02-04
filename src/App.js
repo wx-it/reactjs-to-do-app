@@ -4,6 +4,7 @@ import Modal from "./components/modal/Modal";
 import Tasks from "./components/tasks/Tasks";
 import CreateTask from "./components/createTask/CreateTask";
 import data from "./data";
+import SideBar from "./components/sideBar/SideBar";
 
 function App() {
   const [tasks, setTasks] = useState(data || []);
@@ -52,8 +53,8 @@ function App() {
 
   return (
     <div className="container">
-      <header>
-        <h1>TODO LIST</h1>
+      <header className="sideBar">
+        <SideBar/>
       </header>
 
       <main>
