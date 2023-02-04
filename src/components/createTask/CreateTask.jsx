@@ -1,43 +1,21 @@
 import "./createTask.css";
 
-const CreateTask = ({ modalOpen, open, close, filterStatus }) => {
+const CreateTask = ({ modalOpen, open, close }) => {
   return (
     <div className="creating-tasks">
-      <button onClick={() => (modalOpen ? close() : open())}>Add Task</button>
+      <div className="filter" >
+        <p>Sort</p>
+        
+        <select>
+          <option value="">All</option>
+          <option>Recently Added</option>
+          <option value="">a to z</option>
 
-      {/* <div>
-        <button
-          type="button"
-          onClick={() => {
-            setTasks(data);
-          }}
-        >
-          All
-        </button>
-        <button type="button" onClick={() => filterStatus("incomplete")}>
-          Incomplete
-        </button>
-        <button type="button" onClick={() => filterStatus("complete")}>
-          Complete
-        </button>
-      </div> */}
-
-      <div className="sec-center">
-        <input
-          className="dropdown"
-          type="checkbox"
-          id="dropdown"
-          name="dropdown"
-        />
-        <label className="for-dropdown" htmlFor="dropdown">
-          Select category
-        </label>
-        <div className="section-dropdown">
-          <button>All</button>
-          <button>Incomplete</button>
-          <button>Complete</button>
-        </div>
+        </select>
+        
       </div>
+
+      <button onClick={() => (modalOpen ? close() : open())}>Add Task</button>
     </div>
   );
 };
