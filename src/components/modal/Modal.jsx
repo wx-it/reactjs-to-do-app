@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import Backdrop from "../backdrop/Backdrop";
 import { useState } from "react";
 import "./modal.css";
+import Select from "react-select";
 
 const Modal = ({
   handleClose,
@@ -40,6 +41,13 @@ const Modal = ({
     setSelect("");
   };
 
+  const options = [
+    { value: "Priority 1", label: "Priority 1" },
+    { value: "Priority 2", label: "Priority 2" },
+    { value: "Priority 3", label: "Priority 3" },
+    { value: "Priority 4", label: "Priority 4" },
+  ];
+
   return (
     <Backdrop onClick={handleClose}>
       <motion.div
@@ -70,19 +78,25 @@ const Modal = ({
               onChange={(e) => setText(e.currentTarget.value)}
             />
 
-            <h3>Status</h3>
-            <select
-              name="select"
-              value={select}
-              onChange={(e) => setSelect(e.currentTarget.value)}
-            >
-              <option value="">All</option>
-              <option value="incomplete">Incomplete</option>
-              <option value="complete">Complete</option>
-            </select>
+            <Select
+              options={options}
+              placeholder="Priority"
+              styles={{
+                control: (baseStyles, state) => ({
+                  ...baseStyles,
+                  width: "40%"
+                }),
+              }}
+            />
 
             <div className="create-task-btn">
-              <button type="submit" onClick={()=> editId ? handleClose(): null} > {editId ? "Edit" : "Create"} </button>
+              <button
+                type="submit"
+                onClick={() => (editId ? handleClose() : null)}
+              >
+                {" "}
+                {editId ? "Edit" : "Create"}{" "}
+              </button>
               <button type="button" onClick={handleClose}>
                 Close
               </button>
