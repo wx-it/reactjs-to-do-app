@@ -19,8 +19,8 @@ const Task = ({ checkBtn, removeTask, task, editTask }) => {
 
   const checkboxAnimationRef = useSpringRef();
   const checkboxAnimationStyle = useSpring({
-    backgroundColor: task.check ? "rgb(129, 77, 250)" : "#f5f5f5",
-    borderColor: task.check ? "rgb(129, 77, 250)" : "#ddd",
+    backgroundColor: task.check ? "#181F28" : "#181F28",
+    borderColor: task.check ? "#181F28" : "#525252",
     config: config.gentle,
     ref: checkboxAnimationRef,
   });
@@ -62,7 +62,7 @@ const Task = ({ checkBtn, removeTask, task, editTask }) => {
           <input type="checkbox" onChange={() => checkBtn(task.id)} />
           <animated.svg
             style={checkboxAnimationStyle}
-            className={`checkbox ${task.check ? "checkbox--active" : ""}`}
+            className={`check ${task.check ? "checkbox--active" : ""}`}
             aria-hidden="true"
             viewBox="0 0 15 11"
             fill="none"
@@ -84,10 +84,7 @@ const Task = ({ checkBtn, removeTask, task, editTask }) => {
         <p style={underline}>{task.text}</p>
       </div>
       <div>
-        <button onClick={() => removeTask(task.id)}>
-          {" "}
-          <MdDelete />{" "}
-        </button>
+     
         <button onClick={()=> editTask(task.id)} >
           {" "}
           <MdCreate />{" "}
