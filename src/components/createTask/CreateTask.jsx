@@ -20,6 +20,7 @@ const CreateTask = ({ modalOpen, open, close }) => {
       border: "none",
       color: "white",
       outline: "none",
+      cursor: "pointer"
     }),
     dropdownIndicator: () => ({
       display: "none",
@@ -37,6 +38,7 @@ const CreateTask = ({ modalOpen, open, close }) => {
       ...baseStyles,
       margin: "none",
       height: "100%",
+      cursor: "pointer"
     }),
     singleValue: (baseStyles) => ({
       ...baseStyles,
@@ -56,34 +58,36 @@ const CreateTask = ({ modalOpen, open, close }) => {
 
   return (
     <div className="creating-tasks">
-      <div className="sort">
-        <div className="sort-title">
-          <TbArrowsSort />
-          <p>Sort</p>
+      <div className="sorting-filtering-container">
+        <div className="sort">
+          <div className="sort-title">
+            <TbArrowsSort />
+            <p>Sort</p>
+          </div>
+
+          <Select
+            options={sortOptions}
+            defaultValue={sortOptions[0]}
+            isSearchable={false}
+            styles={style}
+            theme={theme}
+          />
         </div>
 
-        <Select
-          options={sortOptions}
-          defaultValue={sortOptions[0]}
-          isSearchable={false}
-          styles={style}
-          theme={theme}
-        />
-      </div>
+        <div className="sort">
+          <div className="sort-title">
+            <BsFilter />
+            <p>Filter</p>
+          </div>
 
-      <div className="sort">
-        <div className="sort-title">
-          <BsFilter />
-          <p>Filter</p>
+          <Select
+            options={sortOptions}
+            defaultValue={sortOptions[0]}
+            isSearchable={false}
+            styles={style}
+            theme={theme}
+          />
         </div>
-
-        <Select
-          options={sortOptions}
-          defaultValue={sortOptions[0]}
-          isSearchable={false}
-          styles={style}
-          theme={theme}
-        />
       </div>
 
       <button onClick={() => (modalOpen ? close() : open())}>Add Task</button>
