@@ -53,6 +53,60 @@ const Modal = ({
     { value: "Personal", label: "Personal" },
   ];
 
+  const style = {
+    control: () => ({
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      textAlign: "center",
+      width: "5rem",
+      height: "1.75rem",
+      fontSize: "12px",
+      marginTop: "1rem",
+      letterSpacing: "0.055em",
+      fontWeight: "300",
+      padding: "0",
+      backgroundColor: "rgba(57, 60, 68, 1)",
+      border: "none",
+      color: "white",
+      outline: "none",
+      cursor: "pointer",
+      borderRadius: "5px",
+    }),
+    dropdownIndicator: () => ({
+      display: "none",
+    }),
+    indicatorSeparator: () => ({
+      display: "none",
+    }),
+    menuList: () => ({
+      fontSize: "12px",
+      width: "9.37rem",
+      color: "white",
+      backgroundColor: "rgba(57, 60, 68, 1)",
+    }),
+    option: (baseStyles) => ({
+      ...baseStyles,
+      margin: "none",
+      height: "100%",
+      cursor: "pointer",
+    }),
+    singleValue: (baseStyles) => ({
+      ...baseStyles,
+      color: "white",
+    }),
+  };
+
+  const theme = (theme) => ({
+    ...theme,
+    borderRadius: 0,
+    colors: {
+      ...theme.colors,
+      primary25: "rgba(33, 123, 207, 1)",
+      primary: "black",
+    },
+  });
+
   return (
     <Backdrop onClick={handleClose}>
       <motion.div
@@ -75,48 +129,44 @@ const Modal = ({
         <div className="add-task">
           <h2> {editId ? "EDIT TASK" : "ADD TASK"} </h2>
           <form action="" onSubmit={onSubmit}>
-            <input
-              type="text"
-              placeholder="Task"
-              name="text"
-              value={text}
-              onChange={(e) => setText(e.currentTarget.value)}
-            />
+            <div className="input-form">
+              <input
+                type="text"
+                placeholder="Task"
+                name="text"
+                value={text}
+                onChange={(e) => setText(e.currentTarget.value)}
+              />
+            </div>
 
             <div className="dropdown">
               <Select
                 options={priorityOptions}
-                placeholder="Priority"
-                styles={{
-                  control: (baseStyles, state) => ({
-                    ...baseStyles,
-                    width: "40%",
-                  }),
-                }}
+                defaultValue={priorityOptions[0]}
+                isSearchable={false}
+                styles={style}
+                theme={theme}
               />
 
               <Select
                 options={filterOptions}
-                placeholder="Filter"
-                styles={{
-                  control: (baseStyles, state) => ({
-                    ...baseStyles,
-                    width: "40%",
-                  }),
-                }}
+                defaultValue={filterOptions[0]}
+                isSearchable={false}
+                styles={style}
+                theme={theme}
               />
             </div>
 
             <div className="create-task-btn">
+              <button type="button" onClick={handleClose}>
+                Close
+              </button>
               <button
                 type="submit"
                 onClick={() => (editId ? handleClose() : null)}
               >
                 {" "}
                 {editId ? "Edit" : "Create"}{" "}
-              </button>
-              <button type="button" onClick={handleClose}>
-                Close
               </button>
             </div>
           </form>
