@@ -11,6 +11,49 @@ const CreateTask = ({ modalOpen, open, close }) => {
     { value: "a to z", label: "a to z" },
   ];
 
+  const style = {
+    control: () => ({
+      width: "6rem",
+      fontSize: "12px",
+      padding: "0",
+      backgroundColor: "transparent",
+      border: "none",
+      color: "white",
+      outline: "none",
+    }),
+    dropdownIndicator: () => ({
+      display: "none",
+    }),
+    indicatorSeparator: () => ({
+      display: "none",
+    }),
+    menuList: () => ({
+      fontSize: "12px",
+      width: "9.37rem",
+      color: "white",
+      backgroundColor: "rgba(57, 60, 68, 1)",
+    }),
+    option: (baseStyles) => ({
+      ...baseStyles,
+      margin: "none",
+      height: "100%",
+    }),
+    singleValue: (baseStyles) => ({
+      ...baseStyles,
+      color: "white",
+    }),
+  };
+
+  const theme = (theme) => ({
+    ...theme,
+    borderRadius: 0,
+    colors: {
+      ...theme.colors,
+      primary25: "rgba(33, 123, 207, 1)",
+      primary: "black",
+    },
+  });
+
   return (
     <div className="creating-tasks">
       <div className="sort">
@@ -23,46 +66,8 @@ const CreateTask = ({ modalOpen, open, close }) => {
           options={sortOptions}
           defaultValue={sortOptions[0]}
           isSearchable={false}
-          styles={{
-            control: () => ({
-              width: "9.37rem",
-              fontSize: "12px",
-              padding: "0",
-              backgroundColor: "transparent",
-              border: "none",
-              color: "white",
-              outline: "none",
-            }),
-            dropdownIndicator: () => ({
-              display: "none",
-            }),
-            indicatorSeparator: () => ({
-              display: "none",
-            }),
-            menuList: () => ({
-              fontSize: "12px",
-              color: "white",
-              backgroundColor: "rgba(57, 60, 68, 1)",
-            }),
-            option: (baseStyles) => ({
-              ...baseStyles,
-              margin: "none",
-              height: "100%",
-            }),
-            singleValue: (baseStyles) => ({
-              ...baseStyles,
-              color: "white",
-            }),
-          }}
-          theme={(theme) => ({
-            ...theme,
-            borderRadius: 0,
-            colors: {
-              ...theme.colors,
-              primary25: "rgba(33, 123, 207, 1)",
-              primary: "black",
-            },
-          })}
+          styles={style}
+          theme={theme}
         />
       </div>
 
@@ -76,46 +81,8 @@ const CreateTask = ({ modalOpen, open, close }) => {
           options={sortOptions}
           defaultValue={sortOptions[0]}
           isSearchable={false}
-          styles={{
-            control: () => ({
-              width: "9.37rem",
-              fontSize: "12px",
-              padding: "0",
-              backgroundColor: "transparent",
-              border: "none",
-              color: "white",
-              outline: "none",
-            }),
-            dropdownIndicator: () => ({
-              display: "none",
-            }),
-            indicatorSeparator: () => ({
-              display: "none",
-            }),
-            menuList: () => ({
-              fontSize: "12px",
-              color: "white",
-              backgroundColor: "rgba(57, 60, 68, 1)",
-            }),
-            option: (baseStyles) => ({
-              ...baseStyles,
-              margin: "none",
-              height: "100%",
-            }),
-            singleValue: (baseStyles) => ({
-              ...baseStyles,
-              color: "white",
-            }),
-          }}
-          theme={(theme) => ({
-            ...theme,
-            borderRadius: 0,
-            colors: {
-              ...theme.colors,
-              primary25: "rgba(33, 123, 207, 1)",
-              primary: "black",
-            },
-          })}
+          styles={style}
+          theme={theme}
         />
       </div>
 
