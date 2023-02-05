@@ -41,11 +41,16 @@ const Modal = ({
     setSelect("");
   };
 
-  const options = [
+  const priorityOptions = [
     { value: "Priority 1", label: "Priority 1" },
     { value: "Priority 2", label: "Priority 2" },
     { value: "Priority 3", label: "Priority 3" },
     { value: "Priority 4", label: "Priority 4" },
+  ];
+  const filterOptions = [
+    { value: "Design", label: "Design" },
+    { value: "Web Dev", label: "Web Dev" },
+    { value: "Personal", label: "Personal" },
   ];
 
   return (
@@ -78,16 +83,29 @@ const Modal = ({
               onChange={(e) => setText(e.currentTarget.value)}
             />
 
-            <Select
-              options={options}
-              placeholder="Priority"
-              styles={{
-                control: (baseStyles, state) => ({
-                  ...baseStyles,
-                  width: "40%"
-                }),
-              }}
-            />
+            <div className="dropdown">
+              <Select
+                options={priorityOptions}
+                placeholder="Priority"
+                styles={{
+                  control: (baseStyles, state) => ({
+                    ...baseStyles,
+                    width: "40%",
+                  }),
+                }}
+              />
+
+              <Select
+                options={filterOptions}
+                placeholder="Filter"
+                styles={{
+                  control: (baseStyles, state) => ({
+                    ...baseStyles,
+                    width: "40%",
+                  }),
+                }}
+              />
+            </div>
 
             <div className="create-task-btn">
               <button
