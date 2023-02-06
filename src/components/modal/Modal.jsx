@@ -15,6 +15,7 @@ const Modal = ({
   setEditId,
   tasks,
   setTasks,
+  darkMode
 }) => {
   const onSubmit = (e) => {
     e.preventDefault();

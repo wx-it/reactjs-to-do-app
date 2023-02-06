@@ -12,14 +12,14 @@ import { motion } from "framer-motion";
 
 import "./tasks.css";
 
-const Task = ({ checkBtn, removeTask, task, editTask }) => {
+const Task = ({ checkBtn, removeTask, task, editTask, darkMode }) => {
   const underline = {
     textDecoration: task.check ? "line-through" : "none",
   };
 
   const checkboxAnimationRef = useSpringRef();
   const checkboxAnimationStyle = useSpring({
-    backgroundColor: task.check ? "#181F28" : "#181F28",
+    backgroundColor: task.check ? "#181F28" : darkMode ? "#181F28" : "#fffff",
     borderColor: task.check ? "#181F28" : "#525252",
     config: config.gentle,
     ref: checkboxAnimationRef,
@@ -43,7 +43,7 @@ const Task = ({ checkBtn, removeTask, task, editTask }) => {
 
   return (
     <motion.div
-      className="task"
+      className={darkMode ? "task dark-task" : "task light-task"}
       initial={{ y: 30, opacity: 0 }}
       animate={{
         y: 0,
@@ -62,7 +62,7 @@ const Task = ({ checkBtn, removeTask, task, editTask }) => {
           <input type="checkbox" onChange={() => checkBtn(task.id)} />
           <animated.svg
             style={checkboxAnimationStyle}
-            className={`check ${task.check ? "checkbox--active" : ""}`}
+            className={darkMode ? "dark-check check" : "light-check check"}
             aria-hidden="true"
             viewBox="0 0 15 11"
             fill="none"
@@ -84,8 +84,7 @@ const Task = ({ checkBtn, removeTask, task, editTask }) => {
         <p style={underline}>{task.text}</p>
       </div>
       <div>
-     
-        <button onClick={()=> editTask(task.id)} >
+        <button onClick={() => editTask(task.id)}>
           {" "}
           <MdCreate />{" "}
         </button>

@@ -37,12 +37,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #333F4A ;
+  background-color: white;
   margin: 1rem 0;
   padding: 0.25rem 1rem;
   border-radius: 10px;
   box-shadow: 0px 1px 5px 2px rgba(0, 0, 0, 0.1);
-  color: white;
+  color: black;
 }
 
 .task:hover {
@@ -65,15 +65,37 @@ input[type="checkbox"] {
   height: 20px;
   width: 20px;
   border-radius: 3px;
-  background-color: #181F28;
+  background-color: white;
   border: 1px #ddd solid;
   margin-right: 4px;
 }
 
 
-.all-tasks p {
+
+.all-tasks p:first-child {
   color: white;
   text-align: center;
 }
 
 /*293240*/
+
+/*.............light mode.............*/
+.light-task {
+  background-color: white;
+  color: black;
+}
+
+.light-check {
+  background-color: white;
+}
+
+/*.........dark mode..........*/
+
+.dark-task {
+  background-color: #333F4A;
+  color: white;
+}
+
+.dark-check {
+  background-color: #181F28;
+}

@@ -2,7 +2,7 @@ import Task from "./Task";
 import "./tasks.css";
 import { motion, AnimatePresence } from "framer-motion";
 
-const Tasks = ({ tasks, checkBtn, removeTask, editTask }) => {
+const Tasks = ({ tasks, checkBtn, removeTask, editTask, darkMode }) => {
   return (
     <div className="all-tasks">
       <AnimatePresence initial={false}>
@@ -14,6 +14,7 @@ const Tasks = ({ tasks, checkBtn, removeTask, editTask }) => {
               checkBtn={checkBtn}
               removeTask={removeTask}
               editTask={editTask}
+              darkMode={darkMode}
             />
           ))
         ) : (

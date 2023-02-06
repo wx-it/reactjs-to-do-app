@@ -72,10 +72,22 @@ function App() {
     open();
   };
 
+  const [darkMode, setDarkMode] = useState(false);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
   return (
-    <div className="container">
-      <header className="sideBar">
-        <SideBar />
+    <div className={darkMode ? "dark-container" : "container"}>
+      <header
+        className={darkMode ? "darkSideBar sideBar" : "lightSideBar sideBar"}
+      >
+        <SideBar
+          tasks={tasks}
+          toggleDarkMode={toggleDarkMode}
+          darkMode={darkMode}
+        />
       </header>
 
       <AnimatePresence initial={false} mode="wait">
@@ -92,6 +104,7 @@ function App() {
             setSelect={setSelect}
             editId={editId}
             setEditId={setEditId}
+            darkMode={darkMode}
           />
         )}
       </AnimatePresence>
@@ -104,6 +117,7 @@ function App() {
             setTasks={setTasks}
             data={data}
             tasks={tasks}
+            darkMode={darkMode}
             // filterStatus={filterStatus}
           />
           <Tasks
@@ -111,6 +125,7 @@ function App() {
             checkBtn={checkBtn}
             removeTask={removeTask}
             editTask={editTask}
+            darkMode={darkMode}
           />
         </div>
       </main>

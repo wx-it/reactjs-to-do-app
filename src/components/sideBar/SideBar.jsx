@@ -3,12 +3,9 @@ import "./sideBar.css";
 import { useState } from "react";
 import { BsFillBrightnessHighFill, BsMoon } from "react-icons/bs";
 
-const SideBar = () => {
-  const [darkMode, setDarkMode] = useState(false);
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
+const SideBar = (props) => {
+  const inProgress = props.tasks.map((task) => task.check === false);
+  const complete = props.tasks.map((task) => task.check === true);
 
   return (
     <>
@@ -17,17 +14,17 @@ const SideBar = () => {
 
         <nav>
           <h2>Tasks</h2>
-          <div className="link">
+          <div className={props.darkMode ? "dark-link link" : "lightLink link"}>
             <a href="">All</a>
-            <span>10</span>
+            <span> {props.tasks.length} </span>
           </div>
-          <div className="link">
+          <div className={props.darkMode ? "dark-link link" : "lightLink link"}>
             <a href="">In Progress</a>
-            <span>10</span>
+            <span> {inProgress.length} </span>
           </div>
-          <div className="link">
+          <div className={props.darkMode ? "dark-link link" : "lightLink link"}>
             <a href="">Completed</a>
-            <span>10</span>
+            <span> {complete.length} </span>
           </div>
         </nav>
       </div>
@@ -35,11 +32,18 @@ const SideBar = () => {
       <div className="theme">
         <input
           type="checkbox"
-          onClick={toggleDarkMode}
+          onClick={props.toggleDarkMode}
           className="checkbox"
           id="checkbox"
         />
-        <label for="checkbox" className="checkbox-label">
+        <label
+          htmlFor="checkbox"
+          className={
+            props.darkMode
+              ? "dark-checkbox-label checkbox-label"
+              : "light-checkbox-label checkbox-label"
+          }
+        >
           <div>
             <BsFillBrightnessHighFill />
             <p> Light</p>
@@ -48,8 +52,10 @@ const SideBar = () => {
             <BsMoon />
             <p>Dark</p>
           </div>
-          <span className="ball">
-            {darkMode ? (
+          <span
+            className={props.darkMode ? "dark-ball ball" : "dark-ball ball"}
+          >
+            {props.darkMode ? (
               <div>
                 <BsMoon />
                 <p>Dark</p>

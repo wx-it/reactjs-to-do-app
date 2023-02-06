@@ -3,7 +3,7 @@ import { BsFilter } from "react-icons/bs";
 import { TbArrowsSort } from "react-icons/tb";
 import Select from "react-select";
 
-const CreateTask = ({ modalOpen, open, close }) => {
+const CreateTask = ({ modalOpen, open, close, darkMode }) => {
   const sortOptions = [
     { value: "Date created", label: "Date created" },
     { value: "All", label: "All" },
@@ -20,7 +20,7 @@ const CreateTask = ({ modalOpen, open, close }) => {
       border: "none",
       color: "white",
       outline: "none",
-      cursor: "pointer"
+      cursor: "pointer",
     }),
     dropdownIndicator: () => ({
       display: "none",
@@ -38,11 +38,11 @@ const CreateTask = ({ modalOpen, open, close }) => {
       ...baseStyles,
       margin: "none",
       height: "100%",
-      cursor: "pointer"
+      cursor: "pointer",
     }),
     singleValue: (baseStyles) => ({
       ...baseStyles,
-      color: "white",
+      color: darkMode ? "#D2D2D2" : "#424242",
     }),
   };
 
@@ -59,8 +59,14 @@ const CreateTask = ({ modalOpen, open, close }) => {
   return (
     <div className="creating-tasks">
       <div className="sorting-filtering-container">
-        <div className="sort">
-          <div className="sort-title">
+        <div className={darkMode ? "dark-sort sort" : "light-sort sort"}>
+          <div
+            className={
+              darkMode
+                ? "dark-sort-title sort-title"
+                : "light-sort-title sort-title"
+            }
+          >
             <TbArrowsSort />
             <p>Sort</p>
           </div>
@@ -74,8 +80,14 @@ const CreateTask = ({ modalOpen, open, close }) => {
           />
         </div>
 
-        <div className="sort">
-          <div className="sort-title">
+        <div className={darkMode ? "dark-sort sort" : "light-sort sort"}>
+          <div
+            className={
+              darkMode
+                ? "dark-sort-title sort-title"
+                : "light-sort-title sort-title"
+            }
+          >
             <BsFilter />
             <p>Filter</p>
           </div>
