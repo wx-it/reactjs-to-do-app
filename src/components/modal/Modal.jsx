@@ -15,7 +15,7 @@ const Modal = ({
   setEditId,
   tasks,
   setTasks,
-  darkMode
+  darkMode,
 }) => {
   const onSubmit = (e) => {
     e.preventDefault();
@@ -67,9 +67,8 @@ const Modal = ({
       letterSpacing: "0.055em",
       fontWeight: "300",
       padding: "0",
-      backgroundColor: "rgba(57, 60, 68, 1)",
+      backgroundColor: darkMode ? "rgba(57, 60, 68, 1)" : "#42424242",
       border: "none",
-      color: "white",
       outline: "none",
       cursor: "pointer",
       borderRadius: "5px",
@@ -94,7 +93,7 @@ const Modal = ({
     }),
     singleValue: (baseStyles) => ({
       ...baseStyles,
-      color: "white",
+      color: darkMode ? "white" : "black",
     }),
   };
 
@@ -127,10 +126,20 @@ const Modal = ({
         }}
         exit={{ y: -300, opacity: 0 }}
       >
-        <div className="add-task">
+        <div
+          className={
+            darkMode ? "dark-add-task add-task" : "light-add-task add-task"
+          }
+        >
           <h2> {editId ? "EDIT TASK" : "ADD TASK"} </h2>
           <form action="" onSubmit={onSubmit}>
-            <div className="input-form">
+            <div
+              className={
+                darkMode
+                  ? "input-form dark-input-form"
+                  : "input-form light-input-form"
+              }
+            >
               <input
                 type="text"
                 placeholder="Task"
@@ -158,7 +167,13 @@ const Modal = ({
               />
             </div>
 
-            <div className="create-task-btn">
+            <div
+              className={
+                darkMode
+                  ? "dark-create-task-btn create-task-btn"
+                  : "create-task-btn light-create-task-btn"
+              }
+            >
               <button type="button" onClick={handleClose}>
                 Close
               </button>

@@ -21,7 +21,7 @@
 
 .input-form input {
   border: none;
-  border-bottom: 1px #5F5F5F solid;
+  border-bottom: 1px rgb(201, 201, 201) solid;
   width: 100%;
   background-color: transparent;
   padding: 0.75rem 0rem 0.5rem 0rem;
@@ -39,7 +39,7 @@
   justify-content: flex-end;
   width: 100%;
   padding-top: 1rem;
-  border-top: 1px solid rgba(69, 69, 69, 1);
+  border-top: 1px solid rgb(201, 201, 201);
   margin-right: 1.5rem;
 }
 
@@ -54,8 +54,6 @@
   font-weight: 500;
   letter-spacing: 0.055em;
   margin-right: 1rem;
-
-
 }
 
 .create-task-btn button:last-child {
@@ -72,4 +70,49 @@
   padding: 0 1.5rem;
   margin: 1rem 0;
 
+}
+
+
+/*.............light mode.................*/
+.light-add-task {
+  background-color: #ffffff;
+}
+
+.light-add-task h2 {
+  color: black;
+}
+
+.light-input-form input {
+  border-bottom: 1px rgb(201, 201, 201) solid;
+}
+
+.light-create-task-btn button {
+  background-color: #42424242;
+  color: rgb(95, 95, 95);
+}
+
+.light-create-task-btn {
+  border-top: 1px solid rgb(201, 201, 201);
+}
+
+/*........dark mode..............*/
+.dark-add-task {
+  background-color: #181F28;
+}
+
+.dark-add-task h2 {
+  color: white;
+}
+
+.dark-input-form input {
+  border-bottom: 1px #5F5F5F solid;
+}
+
+.dark-create-task-btn {
+  border-top: 1px solid rgba(69, 69, 69, 1);
+}
+
+.dark-create-task-btn button {
+  background-color: rgba(57, 60, 68, 1);
+  color: rgba(167, 167, 167, 1);
 }
