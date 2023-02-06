@@ -14,7 +14,10 @@ const SideBar = (props) => {
 
         <nav>
           <h2>Tasks</h2>
-          <div className={props.darkMode ? "dark-link link" : "lightLink link"}>
+          <div
+            onClick={props.filterAll}
+            className={props.darkMode ? "dark-link link" : "lightLink link"}
+          >
             <p>All</p>
             <span> {props.tasks.length >= 0 ? props.tasks.length : "0"} </span>
           </div>
@@ -26,7 +29,7 @@ const SideBar = (props) => {
             <span> {inProgress.length >= 0 ? inProgress.length : "0"} </span>
           </div>
           <div
-            onClick={() => props.filterCompleted()}
+            onClick={props.filterCompleted}
             className={props.darkMode ? "dark-link link" : "lightLink link"}
           >
             <p>Completed</p>

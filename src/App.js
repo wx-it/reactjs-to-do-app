@@ -7,28 +7,7 @@ import data from "./data";
 import SideBar from "./components/sideBar/SideBar";
 
 function App() {
-  const [tasks, setTasks] = useState(
-    [
-      {
-        id: 1,
-        check: true,
-        text: "finish the tasks app",
-        state: "incomplete",
-      },
-      {
-        id: 2,
-        check: false,
-        text: "finish the tasks app",
-        state: "incomplete",
-      },
-      {
-        id: 3,
-        check: false,
-        text: "finish the tasks app",
-        state: "incomplete",
-      },
-    ] || []
-  );
+  const [tasks, setTasks] = useState(data || []);
   const [modalOpen, setModalOpen] = useState(false);
   const [text, setText] = useState("");
   const [select, setSelect] = useState("");
@@ -58,12 +37,17 @@ function App() {
     setTasks([...deleteTask]);
   }
 
-  //  function filterStatus(state) {
-  //    const setState = data.filter((item) => {
-  //      return item.select === state;
-  //    });
-  //    setTasks(setState);
-  //  }
+  const filterCompleted = () => {
+    setTasks(data.filter((items) => items.check === true));
+  };
+
+  const filterInProgress = () => {
+    setTasks(data.filter((items) => items.check === false));
+  };
+
+  const filterAll = () => {
+    setTasks(data);
+  };
 
   const editTask = (id) => {
     const edit = tasks.find((task) => task.id === id);
@@ -87,6 +71,9 @@ function App() {
           tasks={tasks}
           toggleDarkMode={toggleDarkMode}
           darkMode={darkMode}
+          filterAll={filterAll}
+          filterCompleted={filterCompleted}
+          filterInProgress={filterInProgress}
         />
       </header>
 
