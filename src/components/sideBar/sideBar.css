@@ -31,7 +31,9 @@
     justify-content: space-between;
 }
 
-.link a {
+.link p {
+    padding: 0;
+    margin: 0;
     text-decoration: none;
     color: black;
 }
@@ -112,8 +114,7 @@
     color: black;
 }
 
-.lightLink a {
-    text-decoration: none;
+.lightLink p {
     color: black;
 }
 
@@ -147,7 +148,7 @@
     color: white;
 }
 
-.dark-link a {
+.dark-link p {
     color: white;
 }
 

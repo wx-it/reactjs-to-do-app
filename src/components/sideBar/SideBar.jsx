@@ -4,8 +4,8 @@ import { useState } from "react";
 import { BsFillBrightnessHighFill, BsMoon } from "react-icons/bs";
 
 const SideBar = (props) => {
-  const inProgress = props.tasks.map((task) => task.check === false);
-  const complete = props.tasks.map((task) => task.check === true);
+  const inProgress = props.tasks.filter((task) => task.check === false);
+  const complete = props.tasks.filter((task) => task.check === true);
 
   return (
     <>
@@ -15,16 +15,22 @@ const SideBar = (props) => {
         <nav>
           <h2>Tasks</h2>
           <div className={props.darkMode ? "dark-link link" : "lightLink link"}>
-            <a href="">All</a>
-            <span> {props.tasks.length} </span>
+            <p>All</p>
+            <span> {props.tasks.length >= 0 ? props.tasks.length : "0"} </span>
           </div>
-          <div className={props.darkMode ? "dark-link link" : "lightLink link"}>
-            <a href="">In Progress</a>
-            <span> {inProgress.length} </span>
+          <div
+            onClick={props.filterInProgress}
+            className={props.darkMode ? "dark-link link" : "lightLink link"}
+          >
+            <p>In Progress</p>
+            <span> {inProgress.length >= 0 ? inProgress.length : "0"} </span>
           </div>
-          <div className={props.darkMode ? "dark-link link" : "lightLink link"}>
-            <a href="">Completed</a>
-            <span> {complete.length} </span>
+          <div
+            onClick={() => props.filterCompleted()}
+            className={props.darkMode ? "dark-link link" : "lightLink link"}
+          >
+            <p>Completed</p>
+            <span> {complete.length >= 0 ? complete.length : "0"} </span>
           </div>
         </nav>
       </div>
