@@ -112,6 +112,8 @@
 /*.....................light mode ....................*/
 .lightSideBar {
     color: black;
+    border-right: 1px solid #bbbbbb;
+
 }
 
 .lightLink p {
