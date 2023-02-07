@@ -17,7 +17,7 @@ const Checkbox = ({ task, darkMode, checkBtn }) => {
         : "rgba(33, 123, 207, 1)"
       : darkMode
       ? "#181F28"
-      : "#fffff",
+      : "transparent",
     borderColor: task.check
       ? darkMode
         ? "#181F28"

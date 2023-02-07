@@ -72,6 +72,12 @@ function App() {
     </div>
   ));
 
+
+  //sorting
+  const sortAlphabetically = () =>{
+    setTasks(tasks.sort())
+  }
+
   return (
     <div className={darkMode ? "dark-container" : "container"}>
       <header
@@ -113,7 +119,7 @@ function App() {
             data={data}
             tasks={tasks}
             darkMode={darkMode}
-            // filterStatus={filterStatus}
+            sortAlphabetically={sortAlphabetically}
           />
           <Tasks
             tasks={tasks}

@@ -3,12 +3,12 @@ import { BsFilter } from "react-icons/bs";
 import { TbArrowsSort } from "react-icons/tb";
 import Select from "react-select";
 
-const CreateTask = ({ modalOpen, open, close, darkMode }) => {
+const CreateTask = ({ modalOpen, open, close, darkMode, sortAlphabetically }) => {
   const sortOptions = [
     { value: "Date created", label: "Date created" },
     { value: "All", label: "All" },
-    { value: "Recently added", label: "Recently added" },
-    { value: "a to z", label: "a to z" },
+    { value: "a to z", label: "a to z", onClick: sortAlphabetically() },
+    { value: "z to a", label: "z to a" },
   ];
 
   const style = {
