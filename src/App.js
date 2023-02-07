@@ -55,7 +55,7 @@ function App() {
 
   const FILTER_MAP = {
     All: () => true,
-    Active:  (task) => task.check === false,
+    Active: (task) => task.check === false,
     Completed: (task) => task.check === true,
   };
 
@@ -69,7 +69,6 @@ function App() {
       aria-pressed={name === filter}
     >
       <p> {name} </p>
-      <span> {tasks.length >= 0 ? tasks.length : "0"} </span>
     </div>
   ));
 
