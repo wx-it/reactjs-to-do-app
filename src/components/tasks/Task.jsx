@@ -19,8 +19,14 @@ const Task = ({ checkBtn, removeTask, task, editTask, darkMode }) => {
 
   const checkboxAnimationRef = useSpringRef();
   const checkboxAnimationStyle = useSpring({
-    backgroundColor: task.check ? "#181F28" : darkMode ? "#181F28" : "#fffff",
-    borderColor: task.check ? "#181F28" : "#525252",
+    backgroundColor: task.check
+      ? "rgba(33, 123, 207, 1)"
+      : darkMode
+      ? "#181F28"
+      : "#fffff",
+    borderColor: task.check ? darkMode
+    ? "#181F28"
+    : "rgba(33, 123, 207, 1)" : "#525252",
     config: config.gentle,
     ref: checkboxAnimationRef,
   });

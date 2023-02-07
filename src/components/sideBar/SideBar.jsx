@@ -14,27 +14,7 @@ const SideBar = (props) => {
 
         <nav>
           <h2>Tasks</h2>
-          <div
-            onClick={props.filterAll}
-            className={props.darkMode ? "dark-link link" : "lightLink link"}
-          >
-            <p>All</p>
-            <span> {props.tasks.length >= 0 ? props.tasks.length : "0"} </span>
-          </div>
-          <div
-            onClick={props.filterInProgress}
-            className={props.darkMode ? "dark-link link" : "lightLink link"}
-          >
-            <p>In Progress</p>
-            <span> {inProgress.length >= 0 ? inProgress.length : "0"} </span>
-          </div>
-          <div
-            onClick={props.filterCompleted}
-            className={props.darkMode ? "dark-link link" : "lightLink link"}
-          >
-            <p>Completed</p>
-            <span> {complete.length >= 0 ? complete.length : "0"} </span>
-          </div>
+          {props.filterList}
         </nav>
       </div>
 

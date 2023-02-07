@@ -21,6 +21,7 @@ function App() {
     let check = false;
     const newTask = { id, check, ...task };
     setTasks([...tasks, newTask]);
+    data.push(newTask);
     close();
   };
 
@@ -37,18 +38,6 @@ function App() {
     setTasks([...deleteTask]);
   }
 
-  const filterCompleted = () => {
-    setTasks(data.filter((items) => items.check === true));
-  };
-
-  const filterInProgress = () => {
-    setTasks(data.filter((items) => items.check === false));
-  };
-
-  const filterAll = () => {
-    setTasks(data);
-  };
-
   const editTask = (id) => {
     const edit = tasks.find((task) => task.id === id);
     setText(edit.text);
@@ -62,6 +51,28 @@ function App() {
     setDarkMode(!darkMode);
   };
 
+  const [filter, setFilter] = useState("All");
+
+  const FILTER_MAP = {
+    All: () => true,
+    Active:  (task) => task.check === false,
+    Completed: (task) => task.check === true,
+  };
+
+  const FILTER_NAMES = Object.keys(FILTER_MAP);
+
+  const filterList = FILTER_NAMES.map((name) => (
+    <div
+      key={name}
+      className={darkMode ? "dark-link link" : "lightLink link"}
+      onClick={() => setFilter(name)}
+      aria-pressed={name === filter}
+    >
+      <p> {name} </p>
+      <span> {tasks.length >= 0 ? tasks.length : "0"} </span>
+    </div>
+  ));
+
   return (
     <div className={darkMode ? "dark-container" : "container"}>
       <header
@@ -71,9 +82,7 @@ function App() {
           tasks={tasks}
           toggleDarkMode={toggleDarkMode}
           darkMode={darkMode}
-          filterAll={filterAll}
-          filterCompleted={filterCompleted}
-          filterInProgress={filterInProgress}
+          filterList={filterList}
         />
       </header>
 
@@ -113,6 +122,8 @@ function App() {
             removeTask={removeTask}
             editTask={editTask}
             darkMode={darkMode}
+            FILTER_MAP={FILTER_MAP}
+            filter={filter}
           />
         </div>
       </main>
