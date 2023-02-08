@@ -2,19 +2,19 @@ const data = [
   {
     id: 1,
     check: true,
-    text: "finish the tasks app",
+    text: "z",
     state: "incomplete",
   },
   {
     id: 2,
     check: false,
-    text: "finish the tasks app",
+    text: "a",
     state: "incomplete",
   },
   {
     id: 3,
     check: false,
-    text: "finish the tasks app",
+    text: "f",
     state: "incomplete",
   },
 ];

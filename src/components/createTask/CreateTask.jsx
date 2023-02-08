@@ -2,12 +2,19 @@ import "./createTask.css";
 import { BsFilter } from "react-icons/bs";
 import { TbArrowsSort } from "react-icons/tb";
 import Select from "react-select";
+import { useState } from "react";
 
-const CreateTask = ({ modalOpen, open, close, darkMode, sortAlphabetically }) => {
+const CreateTask = ({
+  modalOpen,
+  open,
+  close,
+  darkMode,
+  sortAlphabetically,
+  sortReverse
+}) => {
   const sortOptions = [
     { value: "Date created", label: "Date created" },
-    { value: "All", label: "All" },
-    { value: "a to z", label: "a to z", onClick: sortAlphabetically() },
+    { value: "a to z", label: "a to z" },
     { value: "z to a", label: "z to a" },
   ];
 
@@ -56,6 +63,7 @@ const CreateTask = ({ modalOpen, open, close, darkMode, sortAlphabetically }) =>
     },
   });
 
+
   return (
     <div className="creating-tasks">
       <div className="sorting-filtering-container">
@@ -71,13 +79,22 @@ const CreateTask = ({ modalOpen, open, close, darkMode, sortAlphabetically }) =>
             <p>Sort</p>
           </div>
 
-          <Select
-            options={sortOptions}
-            defaultValue={sortOptions[0]}
-            isSearchable={false}
-            styles={style}
-            theme={theme}
-          />
+          <div className="sec-center">
+            <input
+              className="dropdown"
+              type="checkbox"
+              id="dropdown"
+              name="dropdown"
+            />
+            <label className="for-dropdown" htmlFor="dropdown">
+              Select category
+            </label>
+            <div className="section-dropdown">
+              <button>Recently added</button>
+              <button onClick={sortAlphabetically}>a to z</button>
+              <button onClick={sortReverse}>z to a</button>
+            </div>
+          </div>
         </div>
 
         <div className={darkMode ? "dark-sort sort" : "light-sort sort"}>

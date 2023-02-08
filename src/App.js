@@ -72,11 +72,20 @@ function App() {
     </div>
   ));
 
-
   //sorting
-  const sortAlphabetically = () =>{
-    setTasks(tasks.sort())
-  }
+  const sortAlphabetically = () => {
+    const strAscending = [...tasks].sort((a, b) =>
+    a.text > b.text ? 1 : -1,
+  );
+  setTasks(strAscending)
+};
+
+  const sortReverse = () => {
+    const strAscending = [...tasks].sort((a, b) =>
+    a.text > b.text ? -1 : 1,
+  );
+  setTasks(strAscending)
+  };
 
   return (
     <div className={darkMode ? "dark-container" : "container"}>
@@ -120,6 +129,7 @@ function App() {
             tasks={tasks}
             darkMode={darkMode}
             sortAlphabetically={sortAlphabetically}
+            sortReverse={sortReverse}
           />
           <Tasks
             tasks={tasks}
