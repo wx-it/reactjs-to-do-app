@@ -19,7 +19,9 @@ function App() {
   const createTask = (task) => {
     let id = Math.floor(Math.random() * 1000) + 1;
     let check = false;
-    const newTask = { id, check, ...task };
+    const current = new Date();
+    const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
+    const newTask = { id, check, date, ...task };
     setTasks([...tasks, newTask]);
     data.push(newTask);
     close();
