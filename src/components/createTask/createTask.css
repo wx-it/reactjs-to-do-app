@@ -93,7 +93,6 @@
   background-color: transparent;
   cursor: pointer;
   color: #424242;
-  box-shadow: 0 12px 35px 0 rgba(255, 235, 167, 0.15);
 }
 .dropdown:checked + label:before,
 .dropdown:not(:checked) + label:before {
@@ -127,7 +126,7 @@
   background-color: #111;
   top: 35px;
   left: 0;
-  width: 100%;
+  width: 150px;
   border-radius: 4px;
   display: block;
   box-shadow: 0 14px 35px 0 rgba(9, 9, 12, 0.4);
@@ -207,6 +206,11 @@
   border-right: 1px solid #a7a7a7;
 }
 
+.light-dropdown:checked + label,
+.light-dropdown:not(:checked) + label {
+  color: #424242;
+}
+
 /*........dark mode ...................*/
 
 .dark-sort {
@@ -215,4 +219,9 @@
 
 .dark-sort-title {
   color: white;
+}
+
+.dark-dropdown:checked + label,
+.dark-dropdown:not(:checked) + label {
+  color: #d2d2d2;
 }

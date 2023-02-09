@@ -10,7 +10,7 @@ const CreateTask = ({
   close,
   darkMode,
   sortAlphabetically,
-  sortReverse
+  sortReverse,
 }) => {
   const sortOptions = [
     { value: "Date created", label: "Date created" },
@@ -63,7 +63,6 @@ const CreateTask = ({
     },
   });
 
-
   return (
     <div className="creating-tasks">
       <div className="sorting-filtering-container">
@@ -81,13 +80,15 @@ const CreateTask = ({
 
           <div className="sec-center">
             <input
-              className="dropdown"
+              className={
+                darkMode ? "dropdown dark-dropdown" : "dropdown light-dropdown"
+              }
               type="checkbox"
               id="dropdown"
               name="dropdown"
             />
             <label className="for-dropdown" htmlFor="dropdown">
-              Select category
+              Sort tasks
             </label>
             <div className="section-dropdown">
               <button>Recently added</button>
