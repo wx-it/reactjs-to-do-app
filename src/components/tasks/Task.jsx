@@ -15,6 +15,12 @@ const Task = ({
   darkMode,
   toggleEditTask,
   openEditTask,
+  setEditId,
+  editId,
+  setText,
+  text,
+  tasks,
+  setTasks,
 }) => {
   const underline = {
     textDecoration: task.check ? "line-through" : "none",
@@ -49,14 +55,22 @@ const Task = ({
           </div>
         </div>
         <div>
-          <button onClick={() => toggleEditTask(task.id)}>
+          <button onClick={() => editTask(task.id)}>
             {" "}
             <MdCreate />{" "}
           </button>
         </div>
       </motion.div>
       {openEditTask && (
-        <EditTask darkMode={darkMode} />
+        <EditTask
+          darkMode={darkMode}
+          editId={editId}
+          setText={setText}
+          text={text}
+          tasks={tasks}
+          setTasks={setTasks}
+          openEditTask={openEditTask}
+        />
       )}
     </div>
   );

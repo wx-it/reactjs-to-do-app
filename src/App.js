@@ -57,7 +57,7 @@ function App() {
     const edit = tasks.find((task) => task.id === id);
     setText(edit.text);
     setEditId(id);
-    open();
+    toggleEditTask(id)
   };
 
   const [darkMode, setDarkMode] = useState(false);
@@ -143,6 +143,7 @@ function App() {
             sortReverse={sortReverse}
           />
           <Tasks
+            setTasks={setTasks}
             tasks={tasks}
             checkBtn={checkBtn}
             removeTask={removeTask}
@@ -151,6 +152,10 @@ function App() {
             FILTER_MAP={FILTER_MAP}
             filter={filter}
             toggleEditTask={toggleEditTask}
+            setEditId={setEditId}
+            editId={editId}
+            setText={setText}
+            text={text}
           />
         </div>
       </main>

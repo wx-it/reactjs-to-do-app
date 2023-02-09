@@ -11,28 +11,10 @@ const Modal = ({
   select,
   setSelect,
   setText,
-  editId,
-  setEditId,
-  tasks,
-  setTasks,
   darkMode,
 }) => {
   const onSubmit = (e) => {
     e.preventDefault();
-
-    if (editId) {
-      const editTodo = tasks.find((task) => task.id === editId);
-      const updateTask = tasks.map((task) =>
-        task.id === editTodo.id
-          ? (task = { id: task.id, text })
-          : { id: task.id, text: task.text }
-      );
-      setTasks(updateTask);
-      setEditId(0);
-      setText("");
-      return;
-    }
-
     if (!text) {
       alert("type something first");
       return;
@@ -131,7 +113,7 @@ const Modal = ({
             darkMode ? "dark-add-task add-task" : "light-add-task add-task"
           }
         >
-          <h2> {editId ? "EDIT TASK" : "ADD TASK"} </h2>
+          <h2> ADD TASK </h2>
           <form action="" onSubmit={onSubmit}>
             <div
               className={
@@ -177,12 +159,8 @@ const Modal = ({
               <button type="button" onClick={handleClose}>
                 Close
               </button>
-              <button
-                type="submit"
-                onClick={() => (editId ? handleClose() : null)}
-              >
-                {" "}
-                {editId ? "Edit" : "Create"}{" "}
+              <button type="submit" onClick={handleClose}>
+                Create
               </button>
             </div>
           </form>

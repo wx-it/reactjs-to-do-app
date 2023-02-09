@@ -2,7 +2,37 @@ import React from "react";
 import "./editTask.css";
 import Select from "react-select";
 
-const EditTask = ({darkMode}) => {
+const EditTask = ({
+  darkMode,
+  setEditId,
+  editId,
+  setText,
+  text,
+  setTasks,
+  tasks,
+  openEditTask,
+}) => {
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    if (editId) {
+      const editTodo = tasks.find((task) => task.id === editId);
+      const current = new Date();
+      const date = `${current.getDate()}/${
+        current.getMonth() + 1
+      }/${current.getFullYear()}`;
+      const updateTask = tasks.map((task) =>
+        task.id === editTodo.id
+          ? (task = { id: task.id, text, date })
+          : { id: task.id, text: task.text, date }
+      );
+      setTasks(updateTask);
+      setEditId(0);
+      setText("");
+      return;
+    }
+  };
+
   const priorityOptions = [
     { value: "Priority 1", label: "Priority 1" },
     { value: "Priority 2", label: "Priority 2" },
@@ -71,9 +101,15 @@ const EditTask = ({darkMode}) => {
   return (
     <div className="edit-task">
       <h3>Edit Task</h3>
-      <form action="">
+      <form action="" onSubmit={onSubmit}>
         <div className="input-form">
-          <input type="text" placeholder="edit" />
+          <input
+            type="text"
+            placeholder="edit"
+            name="text"
+            value={text}
+            onChange={(e) => setText(e.currentTarget.value)}
+          />
         </div>
 
         <div className="dropdown">
@@ -95,8 +131,8 @@ const EditTask = ({darkMode}) => {
         </div>
 
         <div className="edit-task-btn">
-          <button>Cancel</button>
-          <button>Edit</button>
+          <button onClick={() => !openEditTask}>Cancel</button>
+          <button onClick={() => !openEditTask}>Edit</button>
         </div>
       </form>
     </div>

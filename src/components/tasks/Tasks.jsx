@@ -3,6 +3,7 @@ import "./tasks.css";
 import { motion, AnimatePresence } from "framer-motion";
 
 const Tasks = ({
+  setTasks,
   tasks,
   checkBtn,
   removeTask,
@@ -11,6 +12,10 @@ const Tasks = ({
   FILTER_MAP,
   filter,
   toggleEditTask,
+  setEditId,
+  editId,
+  setText,
+  text,
 }) => {
   return (
     <div className="all-tasks">
@@ -28,6 +33,12 @@ const Tasks = ({
                 darkMode={darkMode}
                 toggleEditTask={toggleEditTask}
                 openEditTask={task.openEditTask}
+                setEditId={setEditId}
+                editId={editId}
+                setText={setText}
+                text={text}
+                tasks={tasks}
+                setTasks={setTasks}
               />
             ))
         ) : (
