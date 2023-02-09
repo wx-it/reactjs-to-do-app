@@ -27,9 +27,16 @@ const Task = ({ checkBtn, removeTask, task, editTask, darkMode }) => {
       }}
       exit={{ y: -30, opacity: 0 }}
     >
-      <div>
+      <div
+        className={
+          darkMode ? "task-text dark-task-text" : "task-text light-task-text"
+        }
+      >
         <Checkbox task={task} darkMode={darkMode} checkBtn={checkBtn} />
-        <p style={underline}>{task.text}</p>
+        <div>
+          <p style={underline}>{task.text}</p>
+          <span style={underline}> {task.date} </span>
+        </div>
       </div>
       <div>
         <button onClick={() => editTask(task.id)}>
