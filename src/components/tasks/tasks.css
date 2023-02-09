@@ -5,6 +5,10 @@
   margin-top: 2rem;
 }
 
+.tasks-container {
+  box-shadow: 0px 1px 5px 2px rgba(0, 0, 0, 0.1);
+}
+
 .task {
   margin: 10px 0;
   display: flex;
@@ -13,7 +17,6 @@
   width: 100%;
   padding: 0.5rem 1rem;
   border-radius: 10px;
-  box-shadow: 0px 1px 5px 2px rgba(0, 0, 0, 0.1);
 }
 
 .task-text {
@@ -52,36 +55,6 @@
   transform: translateY(0px);
   opacity: 1;
 }
-/* 
-.task {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: white;
-  margin: 1rem 0;
-  padding: 0.25rem 1rem;
-  border-radius: 10px;
-  box-shadow: 0px 1px 5px 2px rgba(0, 0, 0, 0.1);
-  color: black;
-  border: 1px red solid;
-}
-
-.task:hover {
-  transform: translateY(-0.25rem);
-  transition: all 0.5s ease;
-}
-
-.task-text {
-  border: 1px red solid;
-  color: black;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
- */
 
 input[type="checkbox"] {
   clip: rect(0 0 0 0);
@@ -102,13 +75,6 @@ input[type="checkbox"] {
   border: 1px #ddd solid;
   margin-right: 4px;
 }
-
-/* .all-tasks p:first-child {
-  color: white;
-  text-align: center;
-} */
-
-/*293240*/
 
 /*.............light mode.............*/
 .light-task {

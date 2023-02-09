@@ -17,14 +17,27 @@ function App() {
   const close = () => setModalOpen(false);
 
   const createTask = (task) => {
-    let id = Math.floor(Math.random() * 1000) + 1;
-    let check = false;
+    const id = Math.floor(Math.random() * 1000) + 1;
+    const check = false;
+    const openEditTask = false;
     const current = new Date();
-    const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
-    const newTask = { id, check, date, ...task };
+    const date = `${current.getDate()}/${
+      current.getMonth() + 1
+    }/${current.getFullYear()}`;
+    const newTask = { id, check, date, openEditTask, ...task };
     setTasks([...tasks, newTask]);
     data.push(newTask);
     close();
+  };
+
+  const toggleEditTask = (id) => {
+    return setTasks((tasks) => {
+      return tasks.map((task) => {
+        return task.id === id
+          ? { ...task, openEditTask: !task.openEditTask }
+          : task;
+      });
+    });
   };
 
   function checkBtn(id) {
@@ -76,17 +89,13 @@ function App() {
 
   //sorting
   const sortAlphabetically = () => {
-    const strAscending = [...tasks].sort((a, b) =>
-    a.text > b.text ? 1 : -1,
-  );
-  setTasks(strAscending)
-};
+    const strAscending = [...tasks].sort((a, b) => (a.text > b.text ? 1 : -1));
+    setTasks(strAscending);
+  };
 
   const sortReverse = () => {
-    const strAscending = [...tasks].sort((a, b) =>
-    a.text > b.text ? -1 : 1,
-  );
-  setTasks(strAscending)
+    const strAscending = [...tasks].sort((a, b) => (a.text > b.text ? -1 : 1));
+    setTasks(strAscending);
   };
 
   return (
@@ -141,6 +150,7 @@ function App() {
             darkMode={darkMode}
             FILTER_MAP={FILTER_MAP}
             filter={filter}
+            toggleEditTask={toggleEditTask}
           />
         </div>
       </main>

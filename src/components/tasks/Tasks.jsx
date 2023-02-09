@@ -10,6 +10,7 @@ const Tasks = ({
   darkMode,
   FILTER_MAP,
   filter,
+  toggleEditTask,
 }) => {
   return (
     <div className="all-tasks">
@@ -25,6 +26,8 @@ const Tasks = ({
                 removeTask={removeTask}
                 editTask={editTask}
                 darkMode={darkMode}
+                toggleEditTask={toggleEditTask}
+                openEditTask={task.openEditTask}
               />
             ))
         ) : (

@@ -1,0 +1,57 @@
+.edit-task {
+  width: 100%;
+  padding: .5rem 0rem;
+  border-top: 1px rgb(223, 209, 209) solid;
+  background-color: transparent;
+}
+
+.edit-task h3 {
+  color: black;
+  font-weight: 500;
+  padding: 0 1.5rem;
+  font-size: 18px;
+}
+
+.input-form {
+  padding: 0 1.5rem;
+}
+
+.input-form input {
+  border: none;
+  border-bottom: 1px rgb(201, 201, 201) solid;
+  width: 100%;
+  background-color: transparent;
+  padding: 0.75rem 0rem 0.5rem 0rem;
+  font-size: 15px;
+  color: rgb(129, 125, 133);
+}
+
+.input-form input:focus {
+  outline: none;
+}
+
+.edit-task-btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  padding-top: 1rem;
+  margin-right: 1.5rem;
+}
+
+.edit-task-btn button {
+  border: none;
+  background-color: #42424242;
+  color: rgb(95, 95, 95);
+  padding: 0.5rem 1.25rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  letter-spacing: 0.055em;
+  margin-right: 1rem;
+}
+
+.edit-task-btn button:last-child {
+  background-color: rgba(33, 123, 207, 1);
+  color: white;
+}
