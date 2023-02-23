@@ -35,7 +35,6 @@ const EditTask = ({
       return;
     }
   };
-  console.log(tasks)
 
   const priorityOptions = [
     { value: "Priority 1", label: "Priority 1" },
