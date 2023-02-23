@@ -27,7 +27,6 @@ function App() {
     }/${current.getFullYear()}`;
     const newTask = { id, check, date, openEditTask, ...task };
     setTasks([...tasks, newTask]);
-    data.push(newTask);
     close();
   };
 
@@ -35,7 +34,7 @@ function App() {
     return setTasks((tasks) => {
       return tasks.map((task) => {
         return task.id === id
-          ? { ...task, openEditTask: !task.openEditTask }
+          ? { ...task, openEditTask: !task.openEditTask}
           : task;
       });
     });

@@ -25,13 +25,12 @@ const EditTask = ({
       }/${current.getFullYear()}`;
       const updateTask = tasks.map((task) =>
         task.id === editTodo.id
-          ? (task = { id: task.id, text: editText, date })
-          : { id: task.id, text: task.text, date }
+          ? (task = { id: task.id, text: editText, check: task.check, date })
+          : { id: task.id, text: task.text, check: task.check, date }
       );
       setTasks(updateTask);
-      setEditId(0);
       setText("");
-      setEditText("")
+      setEditText("");
       return;
     }
   };
@@ -101,8 +100,16 @@ const EditTask = ({
     },
   });
 
+  const closeEdit = () => openEditTask === false;
+
+  console.log(openEditTask);
+
   return (
-    <div className={darkMode ? "edit-task dark-edit-task" : "edit-task light-edit-task"}>
+    <div
+      className={
+        darkMode ? "edit-task dark-edit-task" : "edit-task light-edit-task"
+      }
+    >
       <h3>Edit Task</h3>
       <form action="" onSubmit={onSubmit}>
         <div className="input-form">
@@ -133,9 +140,19 @@ const EditTask = ({
           />
         </div>
 
-        <div className={darkMode ? "dark-edit-task-btn edit-task-btn" : "edit-task-btn light-edit-task-btn"}>
-          <button onClick={() => !openEditTask}>Cancel</button>
-          <button onClick={() => !openEditTask}>Edit</button>
+        <div
+          className={
+            darkMode
+              ? "dark-edit-task-btn edit-task-btn"
+              : "edit-task-btn light-edit-task-btn"
+          }
+        >
+          <button type="button" onClick={closeEdit}>
+            Cancel
+          </button>
+          <button type="submit" onClick={closeEdit}>
+            Edit
+          </button>
         </div>
       </form>
     </div>
