@@ -49,6 +49,7 @@ function App() {
     });
   }
 
+
   function removeTask(id) {
     const deleteTask = tasks.filter((task) => task.id !== id);
     setTasks([...deleteTask]);

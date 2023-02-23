@@ -39,7 +39,7 @@
 .task button {
   font-size: 15px;
   color: black;
-  background-color: rgb(255, 255, 255);
+  background-color: transparent;
   box-shadow: inset 0px 2px 5px 2px rgba(0, 0, 0, 0.2);
   height: 30px;
   width: 30px;
@@ -90,6 +90,10 @@ input[type="checkbox"] {
   color: #333f4a;
 }
 
+.light-task button{
+  color: black;
+}
+
 /*.........dark mode..........*/
 
 .dark-task {
@@ -99,6 +103,10 @@ input[type="checkbox"] {
 
 .dark-check {
   background-color: #181f28;
+}
+
+.dark-task button{
+  color: white;
 }
 
 .dark-task-text span {
