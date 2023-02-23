@@ -57,7 +57,6 @@ function App() {
   const editTask = (id) => {
     const edit = tasks.find((task) => task.id === id);
     setEditText(edit.text);
-    setText(edit.text)
     setEditId(id);
     toggleEditTask(id);
   };
