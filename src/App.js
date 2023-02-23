@@ -10,6 +10,7 @@ function App() {
   const [tasks, setTasks] = useState(data || []);
   const [modalOpen, setModalOpen] = useState(false);
   const [text, setText] = useState("");
+  const [editText, setEditText] = useState("");
   const [select, setSelect] = useState("");
   const [editId, setEditId] = useState(0);
 
@@ -55,9 +56,10 @@ function App() {
 
   const editTask = (id) => {
     const edit = tasks.find((task) => task.id === id);
-    setText(edit.text);
+    setEditText(edit.text);
+    setText(edit.text)
     setEditId(id);
-    toggleEditTask(id)
+    toggleEditTask(id);
   };
 
   const [darkMode, setDarkMode] = useState(false);
@@ -156,6 +158,8 @@ function App() {
             editId={editId}
             setText={setText}
             text={text}
+            setEditText={setEditText}
+            editText={editText}
           />
         </div>
       </main>

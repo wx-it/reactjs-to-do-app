@@ -11,6 +11,8 @@ const EditTask = ({
   setTasks,
   tasks,
   openEditTask,
+  setEditText,
+  editText,
 }) => {
   const onSubmit = (e) => {
     e.preventDefault();
@@ -23,15 +25,17 @@ const EditTask = ({
       }/${current.getFullYear()}`;
       const updateTask = tasks.map((task) =>
         task.id === editTodo.id
-          ? (task = { id: task.id, text, date })
+          ? (task = { id: task.id, text: editText, date })
           : { id: task.id, text: task.text, date }
       );
       setTasks(updateTask);
       setEditId(0);
       setText("");
+      setEditText("")
       return;
     }
   };
+  console.log(tasks)
 
   const priorityOptions = [
     { value: "Priority 1", label: "Priority 1" },
@@ -106,9 +110,9 @@ const EditTask = ({
           <input
             type="text"
             placeholder="edit"
-            name="text"
-            value={text}
-            onChange={(e) => setText(e.currentTarget.value)}
+            name="editText"
+            value={editText}
+            onChange={(e) => setEditText(e.currentTarget.value)}
           />
         </div>
 

@@ -16,6 +16,8 @@ const Tasks = ({
   editId,
   setText,
   text,
+  setEditText,
+  editText,
 }) => {
   return (
     <div className="all-tasks">
@@ -39,6 +41,8 @@ const Tasks = ({
                 text={text}
                 tasks={tasks}
                 setTasks={setTasks}
+                setEditText={setEditText}
+                editText={editText}
               />
             ))
         ) : (

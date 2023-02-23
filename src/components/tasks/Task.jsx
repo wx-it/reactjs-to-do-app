@@ -21,6 +21,8 @@ const Task = ({
   text,
   tasks,
   setTasks,
+  setEditText,
+  editText,
 }) => {
   const underline = {
     textDecoration: task.check ? "line-through" : "none",
@@ -70,6 +72,8 @@ const Task = ({
           tasks={tasks}
           setTasks={setTasks}
           openEditTask={openEditTask}
+          setEditText={setEditText}
+          editText={editText}
         />
       )}
     </div>
