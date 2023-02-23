@@ -3,6 +3,7 @@
   padding: .5rem 0rem;
   border-top: 1px rgb(223, 209, 209) solid;
   background-color: transparent;
+
 }
 
 .edit-task h3 {
@@ -54,4 +55,34 @@
 .edit-task-btn button:last-child {
   background-color: rgba(33, 123, 207, 1);
   color: white;
+}
+
+
+
+/*......LIGHT MODE ................*/
+
+/*........... DARK MODE ................*/
+.dark-edit-task {
+  width: 100%;
+  padding: .5rem 0rem;
+  border-top: 1px rgb(128, 128, 128) solid;
+  background-color: #333f4a;
+}
+
+.dark-edit-task h3{
+  color: white;
+}
+
+
+.dark-input-form input {
+  border-bottom: 1px #5F5F5F solid;
+}
+
+.dark-edit-task-btn {
+  border-top: 1px solid rgb(121, 121, 121);
+}
+
+.dark-edit-task-btn button {
+  background-color: rgb(95, 95, 95);
+  color: rgb(255, 255, 255);
 }

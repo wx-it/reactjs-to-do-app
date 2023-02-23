@@ -61,7 +61,7 @@ const EditTask = ({
       letterSpacing: "0.055em",
       fontWeight: "300",
       padding: "0",
-      backgroundColor: darkMode ? "rgba(57, 60, 68, 1)" : "#42424242",
+      backgroundColor: darkMode ? "rgb(110, 110, 110)" : "#42424242",
       border: "none",
       outline: "none",
       cursor: "pointer",
@@ -102,7 +102,7 @@ const EditTask = ({
   });
 
   return (
-    <div className="edit-task">
+    <div className={darkMode ? "edit-task dark-edit-task" : "edit-task light-edit-task"}>
       <h3>Edit Task</h3>
       <form action="" onSubmit={onSubmit}>
         <div className="input-form">
@@ -133,7 +133,7 @@ const EditTask = ({
           />
         </div>
 
-        <div className="edit-task-btn">
+        <div className={darkMode ? "dark-edit-task-btn edit-task-btn" : "edit-task-btn light-edit-task-btn"}>
           <button onClick={() => !openEditTask}>Cancel</button>
           <button onClick={() => !openEditTask}>Edit</button>
         </div>
