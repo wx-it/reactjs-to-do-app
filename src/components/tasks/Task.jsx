@@ -28,6 +28,10 @@ const Task = ({
     textDecoration: task.check ? "line-through" : "none",
   };
 
+  const toggleEdit = ()=>{
+    editTask(task.id)
+  }
+
   return (
     <div className="tasks-container">
       <motion.div
@@ -57,7 +61,7 @@ const Task = ({
           </div>
         </div>
         <div>
-          <button onClick={() => editTask(task.id)}>
+          <button onClick={() => toggleEdit(task.id)}>
             {" "}
             <MdCreate />{" "}
           </button>
@@ -74,6 +78,8 @@ const Task = ({
           openEditTask={openEditTask}
           setEditText={setEditText}
           editText={editText}
+          editTask={editTask}
+          toggleEdit={toggleEdit}
         />
       )}
     </div>

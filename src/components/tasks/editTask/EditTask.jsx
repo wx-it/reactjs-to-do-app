@@ -13,6 +13,8 @@ const EditTask = ({
   openEditTask,
   setEditText,
   editText,
+  editTask,
+  toggleEdit
 }) => {
   const onSubmit = (e) => {
     e.preventDefault();
@@ -100,9 +102,14 @@ const EditTask = ({
     },
   });
 
-  const closeEdit = () => openEditTask === false;
 
-  console.log(openEditTask);
+  function handleClose(e) {
+    e.preventDefault();
+    console.log('click')
+    console.log(openEditTask);
+    return !openEditTask;
+  }
+
 
   return (
     <div
@@ -147,10 +154,11 @@ const EditTask = ({
               : "edit-task-btn light-edit-task-btn"
           }
         >
-          <button type="button" onClick={closeEdit}>
+          <button type="button" onClick={toggleEdit}>
             Cancel
           </button>
-          <button type="submit" onClick={closeEdit}>
+
+          <button type="submit">
             Edit
           </button>
         </div>

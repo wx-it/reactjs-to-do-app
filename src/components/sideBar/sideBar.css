@@ -106,7 +106,7 @@
 }
 
 .checkbox:checked+.checkbox-label .ball {
-    transform: translateX(115px);
+    transform: translateX(90%);
 }
 
 /*.....................light mode ....................*/
