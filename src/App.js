@@ -22,8 +22,9 @@ function App() {
     const check = false;
     const openEditTask = false;
     const current = new Date();
-    const date = `${current.getHours()}:${current.getMinutes()} ${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
-    const newTask = { id, check, date, openEditTask, ...task };
+    const time = `${current.getHours()}:${current.getMinutes()}`
+    const date = `${time} ${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
+    const newTask = { id, check, date, time, openEditTask, ...task };
     setTasks([...tasks, newTask]);
     close();
   };
@@ -98,8 +99,10 @@ function App() {
   };
 
   const sortRecentlyCreated = ()=>{
-    const strRecent = [...tasks].sort((a, b)=> a.date - b.date)
-    setTasks(strRecent)
+    const sortedItems = [...tasks].sort((a, b) =>  a.time.localeCompare(b.time));
+    setTasks(sortedItems);
+    console.log(tasks)
+
   }
 
   return (
