@@ -22,9 +22,7 @@ function App() {
     const check = false;
     const openEditTask = false;
     const current = new Date();
-    const date = `${current.getDate()}/${
-      current.getMonth() + 1
-    }/${current.getFullYear()}`;
+    const date = `${current.getHours()}:${current.getMinutes()} ${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
     const newTask = { id, check, date, openEditTask, ...task };
     setTasks([...tasks, newTask]);
     close();
@@ -99,6 +97,11 @@ function App() {
     setTasks(strAscending);
   };
 
+  const sortRecentlyCreated = ()=>{
+    const strRecent = [...tasks].sort((a, b)=> a.date - b.date)
+    setTasks(strRecent)
+  }
+
   return (
     <div className={darkMode ? "dark-container" : "container"}>
       <header
@@ -142,6 +145,7 @@ function App() {
             darkMode={darkMode}
             sortAlphabetically={sortAlphabetically}
             sortReverse={sortReverse}
+            sortRecentlyCreated={sortRecentlyCreated}
           />
           <Tasks
             setTasks={setTasks}

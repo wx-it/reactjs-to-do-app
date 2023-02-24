@@ -11,6 +11,7 @@ const CreateTask = ({
   darkMode,
   sortAlphabetically,
   sortReverse,
+  sortRecentlyCreated
 }) => {
   const sortOptions = [
     { value: "Date created", label: "Date created" },
@@ -91,7 +92,7 @@ const CreateTask = ({
               Sort tasks
             </label>
             <div className="section-dropdown">
-              <button>Recently added</button>
+              <button onClick={sortRecentlyCreated}>Recently added</button>
               <button onClick={sortAlphabetically}>a to z</button>
               <button onClick={sortReverse}>z to a</button>
             </div>

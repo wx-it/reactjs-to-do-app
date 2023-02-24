@@ -21,14 +21,10 @@ const EditTask = ({
 
     if (editId) {
       const editTodo = tasks.find((task) => task.id === editId);
-      const current = new Date();
-      const date = `${current.getDate()}/${
-        current.getMonth() + 1
-      }/${current.getFullYear()}`;
       const updateTask = tasks.map((task) =>
         task.id === editTodo.id
-          ? (task = { id: task.id, text: editText, check: task.check, date })
-          : { id: task.id, text: task.text, check: task.check, date }
+          ? (task = { id: task.id, text: editText, check: task.check, date: task.date })
+          : { id: task.id, text: task.text, check: task.check, date: task.date }
       );
       setTasks(updateTask);
       setText("");
